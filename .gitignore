@@ -1,0 +1,42 @@
+# secrets
+.env
+**/.env
+.ssh/
+
+# caches & IDE runtime
+.cache/
+.cursor-server/
+.vscode-server/
+.copilot/
+.nv/
+.triton/
+
+# venvs & deps
+.venv/
+venv/
+node_modules/
+
+# model weights
+models/
+**/models--*/
+*.safetensors
+*.gguf
+*.pt
+*.pth
+*.ckpt
+*.bin
+
+# python
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# redundant bundles
+*.bundle
+
+# oversized runtime logs (GitHub 100MB limit; keep on server only)
+**/driver.log
+
+# cloud creds
+.hycloud_ossutil_config
+.hycloud_ossutil_log/

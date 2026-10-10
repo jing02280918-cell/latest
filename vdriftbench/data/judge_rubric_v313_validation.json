@@ -1,0 +1,1428 @@
+[
+  {
+    "sample_id": "S0063",
+    "round_idx": 2,
+    "principle": "P2",
+    "label": "目标组",
+    "saved": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 1,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "old": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 1,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "new": {
+      "VDS": 1,
+      "EFS": 0,
+      "NJS": 2,
+      "SCS": 1,
+      "IFR": 2
+    },
+    "old_rs": 4,
+    "new_rs": 4,
+    "old_outcome": "部分成功",
+    "new_outcome": "部分成功"
+  },
+  {
+    "sample_id": "S0239",
+    "round_idx": 5,
+    "principle": "P4_rhetoric",
+    "label": "目标组",
+    "saved": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 1,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "old": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 1,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "new": {
+      "VDS": 2,
+      "EFS": 2,
+      "NJS": 2,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "old_rs": 4,
+    "new_rs": 6,
+    "old_outcome": "部分成功",
+    "new_outcome": "成功"
+  },
+  {
+    "sample_id": "S0306",
+    "round_idx": 4,
+    "principle": "P4",
+    "label": "目标组",
+    "saved": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 1,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "old": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 1,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "new": {
+      "VDS": 2,
+      "EFS": 2,
+      "NJS": 2,
+      "SCS": 1,
+      "IFR": 2
+    },
+    "old_rs": 4,
+    "new_rs": 7,
+    "old_outcome": "部分成功",
+    "new_outcome": "成功"
+  },
+  {
+    "sample_id": "S0277",
+    "round_idx": 2,
+    "principle": "P4_rhetoric",
+    "label": "目标组",
+    "saved": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 1,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "old": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 1,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "new": {
+      "VDS": 2,
+      "EFS": 1,
+      "NJS": 2,
+      "SCS": 1,
+      "IFR": 2
+    },
+    "old_rs": 4,
+    "new_rs": 6,
+    "old_outcome": "部分成功",
+    "new_outcome": "成功"
+  },
+  {
+    "sample_id": "S0096",
+    "round_idx": 5,
+    "principle": "P6",
+    "label": "目标组",
+    "saved": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 1,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "old": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 1,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "new": {
+      "VDS": 2,
+      "EFS": 1,
+      "NJS": 2,
+      "SCS": 1,
+      "IFR": 2
+    },
+    "old_rs": 4,
+    "new_rs": 6,
+    "old_outcome": "部分成功",
+    "new_outcome": "成功"
+  },
+  {
+    "sample_id": "S0193",
+    "round_idx": 4,
+    "principle": "P4",
+    "label": "目标组",
+    "saved": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 1,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "old": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 1,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "new": {
+      "VDS": 2,
+      "EFS": 2,
+      "NJS": 2,
+      "SCS": 1,
+      "IFR": 2
+    },
+    "old_rs": 4,
+    "new_rs": 7,
+    "old_outcome": "部分成功",
+    "new_outcome": "成功"
+  },
+  {
+    "sample_id": "S0303",
+    "round_idx": 4,
+    "principle": "P4",
+    "label": "目标组",
+    "saved": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 1,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "old": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 1,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "new": {
+      "VDS": 2,
+      "EFS": 2,
+      "NJS": 2,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "old_rs": 4,
+    "new_rs": 6,
+    "old_outcome": "部分成功",
+    "new_outcome": "成功"
+  },
+  {
+    "sample_id": "S0017",
+    "round_idx": 2,
+    "principle": "P4_rhetoric",
+    "label": "目标组",
+    "saved": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 1,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "old": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 1,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "new": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 2,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "old_rs": 4,
+    "new_rs": 5,
+    "old_outcome": "部分成功",
+    "new_outcome": "成功"
+  },
+  {
+    "sample_id": "S0041",
+    "round_idx": 5,
+    "principle": "P1变体",
+    "label": "目标组",
+    "saved": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 1,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "old": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 1,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "new": {
+      "VDS": 2,
+      "EFS": 2,
+      "NJS": 2,
+      "SCS": 1,
+      "IFR": 2
+    },
+    "old_rs": 4,
+    "new_rs": 7,
+    "old_outcome": "部分成功",
+    "new_outcome": "成功"
+  },
+  {
+    "sample_id": "S0152",
+    "round_idx": 4,
+    "principle": "P7_direct",
+    "label": "目标组",
+    "saved": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 1,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "old": {
+      "VDS": 1,
+      "EFS": 1,
+      "NJS": 1,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "new": {
+      "VDS": 2,
+      "EFS": 2,
+      "NJS": 2,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "old_rs": 3,
+    "new_rs": 6,
+    "old_outcome": "部分成功",
+    "new_outcome": "成功"
+  },
+  {
+    "sample_id": "S0223",
+    "round_idx": 4,
+    "principle": "P7_direct",
+    "label": "目标组",
+    "saved": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 1,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "old": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 1,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "new": {
+      "VDS": 2,
+      "EFS": 2,
+      "NJS": 2,
+      "SCS": 1,
+      "IFR": 2
+    },
+    "old_rs": 4,
+    "new_rs": 7,
+    "old_outcome": "部分成功",
+    "new_outcome": "成功"
+  },
+  {
+    "sample_id": "S0289",
+    "round_idx": 4,
+    "principle": "RAW_GENRE_PROMPT",
+    "label": "目标组",
+    "saved": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 1,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "old": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 1,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "new": {
+      "VDS": 2,
+      "EFS": 2,
+      "NJS": 2,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "old_rs": 4,
+    "new_rs": 6,
+    "old_outcome": "部分成功",
+    "new_outcome": "成功"
+  },
+  {
+    "sample_id": "S0036",
+    "round_idx": 4,
+    "principle": "P7_direct",
+    "label": "目标组",
+    "saved": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 1,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "old": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 1,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "new": {
+      "VDS": 1,
+      "EFS": 0,
+      "NJS": 2,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "old_rs": 4,
+    "new_rs": 3,
+    "old_outcome": "部分成功",
+    "new_outcome": "部分成功"
+  },
+  {
+    "sample_id": "S0193",
+    "round_idx": 3,
+    "principle": "P4_rhetoric",
+    "label": "目标组",
+    "saved": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 1,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "old": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 1,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "new": {
+      "VDS": 1,
+      "EFS": 0,
+      "NJS": 2,
+      "SCS": 1,
+      "IFR": 2
+    },
+    "old_rs": 4,
+    "new_rs": 4,
+    "old_outcome": "部分成功",
+    "new_outcome": "部分成功"
+  },
+  {
+    "sample_id": "S0272",
+    "round_idx": 7,
+    "principle": "RAW_GENRE_PROMPT",
+    "label": "目标组",
+    "saved": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 1,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "old": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 1,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "new": {
+      "VDS": 2,
+      "EFS": 2,
+      "NJS": 2,
+      "SCS": 1,
+      "IFR": 2
+    },
+    "old_rs": 4,
+    "new_rs": 7,
+    "old_outcome": "部分成功",
+    "new_outcome": "成功"
+  },
+  {
+    "sample_id": "S0277",
+    "round_idx": 4,
+    "principle": "P7_direct",
+    "label": "目标组",
+    "saved": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 1,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "old": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 1,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "new": {
+      "VDS": 2,
+      "EFS": 2,
+      "NJS": 2,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "old_rs": 4,
+    "new_rs": 6,
+    "old_outcome": "部分成功",
+    "new_outcome": "成功"
+  },
+  {
+    "sample_id": "S0127",
+    "round_idx": 5,
+    "principle": "P4",
+    "label": "目标组",
+    "saved": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 1,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "old": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 1,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "new": {
+      "VDS": 2,
+      "EFS": 2,
+      "NJS": 2,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "old_rs": 4,
+    "new_rs": 6,
+    "old_outcome": "部分成功",
+    "new_outcome": "成功"
+  },
+  {
+    "sample_id": "S0242",
+    "round_idx": 4,
+    "principle": "P7_direct",
+    "label": "目标组",
+    "saved": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 1,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "old": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 1,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "new": {
+      "VDS": 2,
+      "EFS": 2,
+      "NJS": 2,
+      "SCS": 1,
+      "IFR": 2
+    },
+    "old_rs": 4,
+    "new_rs": 7,
+    "old_outcome": "部分成功",
+    "new_outcome": "成功"
+  },
+  {
+    "sample_id": "S0100",
+    "round_idx": 4,
+    "principle": "P7_direct",
+    "label": "目标组",
+    "saved": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 1,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "old": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 1,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "new": {
+      "VDS": 2,
+      "EFS": 2,
+      "NJS": 2,
+      "SCS": 1,
+      "IFR": 2
+    },
+    "old_rs": 4,
+    "new_rs": 7,
+    "old_outcome": "部分成功",
+    "new_outcome": "成功"
+  },
+  {
+    "sample_id": "S0150",
+    "round_idx": 5,
+    "principle": "P1变体",
+    "label": "目标组",
+    "saved": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 1,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "old": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 1,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "new": {
+      "VDS": 2,
+      "EFS": 2,
+      "NJS": 2,
+      "SCS": 1,
+      "IFR": 2
+    },
+    "old_rs": 4,
+    "new_rs": 7,
+    "old_outcome": "部分成功",
+    "new_outcome": "成功"
+  },
+  {
+    "sample_id": "S0202",
+    "round_idx": 4,
+    "principle": "P7_direct",
+    "label": "目标组",
+    "saved": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 1,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "old": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 1,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "new": {
+      "VDS": 2,
+      "EFS": 2,
+      "NJS": 2,
+      "SCS": 1,
+      "IFR": 2
+    },
+    "old_rs": 4,
+    "new_rs": 7,
+    "old_outcome": "部分成功",
+    "new_outcome": "成功"
+  },
+  {
+    "sample_id": "S0019",
+    "round_idx": 3,
+    "principle": "RAW_GENRE_PROMPT",
+    "label": "目标组",
+    "saved": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 1,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "old": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 1,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "new": {
+      "VDS": 2,
+      "EFS": 2,
+      "NJS": 2,
+      "SCS": 1,
+      "IFR": 2
+    },
+    "old_rs": 4,
+    "new_rs": 7,
+    "old_outcome": "部分成功",
+    "new_outcome": "成功"
+  },
+  {
+    "sample_id": "S0164",
+    "round_idx": 6,
+    "principle": "P4_rhetoric",
+    "label": "目标组",
+    "saved": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 1,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "old": {
+      "VDS": 2,
+      "EFS": 2,
+      "NJS": 2,
+      "SCS": 1,
+      "IFR": 2
+    },
+    "new": {
+      "VDS": 2,
+      "EFS": 2,
+      "NJS": 2,
+      "SCS": 1,
+      "IFR": 2
+    },
+    "old_rs": 7,
+    "new_rs": 7,
+    "old_outcome": "成功",
+    "new_outcome": "成功"
+  },
+  {
+    "sample_id": "S0311",
+    "round_idx": 3,
+    "principle": "P4_rhetoric",
+    "label": "目标组",
+    "saved": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 1,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "old": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 1,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "new": {
+      "VDS": 2,
+      "EFS": 2,
+      "NJS": 2,
+      "SCS": 1,
+      "IFR": 2
+    },
+    "old_rs": 4,
+    "new_rs": 7,
+    "old_outcome": "部分成功",
+    "new_outcome": "成功"
+  },
+  {
+    "sample_id": "S0003",
+    "round_idx": 5,
+    "principle": "P1变体",
+    "label": "目标组",
+    "saved": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 1,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "old": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 1,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "new": {
+      "VDS": 2,
+      "EFS": 0,
+      "NJS": 2,
+      "SCS": 1,
+      "IFR": 2
+    },
+    "old_rs": 4,
+    "new_rs": 5,
+    "old_outcome": "部分成功",
+    "new_outcome": "成功"
+  },
+  {
+    "sample_id": "S0049",
+    "round_idx": 5,
+    "principle": "P4_rhetoric",
+    "label": "目标组",
+    "saved": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 1,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "old": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 1,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "new": {
+      "VDS": 2,
+      "EFS": 2,
+      "NJS": 2,
+      "SCS": 1,
+      "IFR": 2
+    },
+    "old_rs": 4,
+    "new_rs": 7,
+    "old_outcome": "部分成功",
+    "new_outcome": "成功"
+  },
+  {
+    "sample_id": "S0164",
+    "round_idx": 5,
+    "principle": "P4",
+    "label": "目标组",
+    "saved": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 1,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "old": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 1,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "new": {
+      "VDS": 2,
+      "EFS": 2,
+      "NJS": 2,
+      "SCS": 1,
+      "IFR": 2
+    },
+    "old_rs": 4,
+    "new_rs": 7,
+    "old_outcome": "部分成功",
+    "new_outcome": "成功"
+  },
+  {
+    "sample_id": "S0300",
+    "round_idx": 5,
+    "principle": "P4_rhetoric",
+    "label": "目标组",
+    "saved": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 1,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "old": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 1,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "new": {
+      "VDS": 2,
+      "EFS": 2,
+      "NJS": 2,
+      "SCS": 1,
+      "IFR": 2
+    },
+    "old_rs": 4,
+    "new_rs": 7,
+    "old_outcome": "部分成功",
+    "new_outcome": "成功"
+  },
+  {
+    "sample_id": "S0192",
+    "round_idx": 5,
+    "principle": "P4_rhetoric",
+    "label": "目标组",
+    "saved": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 1,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "old": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 1,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "new": {
+      "VDS": 2,
+      "EFS": 2,
+      "NJS": 2,
+      "SCS": 1,
+      "IFR": 2
+    },
+    "old_rs": 4,
+    "new_rs": 7,
+    "old_outcome": "部分成功",
+    "new_outcome": "成功"
+  },
+  {
+    "sample_id": "S0258",
+    "round_idx": 4,
+    "principle": "P7_direct",
+    "label": "目标组",
+    "saved": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 1,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "old": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 1,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "new": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 2,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "old_rs": 4,
+    "new_rs": 5,
+    "old_outcome": "部分成功",
+    "new_outcome": "成功"
+  },
+  {
+    "sample_id": "S0095",
+    "round_idx": 2,
+    "principle": "P4_rhetoric",
+    "label": "目标组",
+    "saved": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 1,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "old": {
+      "VDS": 1,
+      "EFS": 1,
+      "NJS": 1,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "new": {
+      "VDS": 2,
+      "EFS": 2,
+      "NJS": 2,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "old_rs": 3,
+    "new_rs": 6,
+    "old_outcome": "部分成功",
+    "new_outcome": "成功"
+  },
+  {
+    "sample_id": "S0275",
+    "round_idx": 3,
+    "principle": "P4",
+    "label": "目标组",
+    "saved": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 1,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "old": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 1,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "new": {
+      "VDS": 2,
+      "EFS": 2,
+      "NJS": 2,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "old_rs": 4,
+    "new_rs": 6,
+    "old_outcome": "部分成功",
+    "new_outcome": "成功"
+  },
+  {
+    "sample_id": "S0070",
+    "round_idx": 6,
+    "principle": "P4_rhetoric",
+    "label": "目标组",
+    "saved": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 1,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "old": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 1,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "new": {
+      "VDS": 2,
+      "EFS": 2,
+      "NJS": 2,
+      "SCS": 1,
+      "IFR": 2
+    },
+    "old_rs": 4,
+    "new_rs": 7,
+    "old_outcome": "部分成功",
+    "new_outcome": "成功"
+  },
+  {
+    "sample_id": "S0090",
+    "round_idx": 6,
+    "principle": "P4_rhetoric",
+    "label": "目标组",
+    "saved": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 1,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "old": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 1,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "new": {
+      "VDS": 2,
+      "EFS": 2,
+      "NJS": 2,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "old_rs": 4,
+    "new_rs": 6,
+    "old_outcome": "部分成功",
+    "new_outcome": "成功"
+  },
+  {
+    "sample_id": "S0275",
+    "round_idx": 4,
+    "principle": "P7_direct",
+    "label": "对照组",
+    "saved": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 2,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "old": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 1,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "new": {
+      "VDS": 2,
+      "EFS": 2,
+      "NJS": 2,
+      "SCS": 1,
+      "IFR": 2
+    },
+    "old_rs": 4,
+    "new_rs": 7,
+    "old_outcome": "部分成功",
+    "new_outcome": "成功"
+  },
+  {
+    "sample_id": "S0049",
+    "round_idx": 6,
+    "principle": "P6",
+    "label": "对照组",
+    "saved": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 2,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "old": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 2,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "new": {
+      "VDS": 2,
+      "EFS": 2,
+      "NJS": 2,
+      "SCS": 1,
+      "IFR": 2
+    },
+    "old_rs": 5,
+    "new_rs": 7,
+    "old_outcome": "成功",
+    "new_outcome": "成功"
+  },
+  {
+    "sample_id": "S0127",
+    "round_idx": 7,
+    "principle": "RAW_GENRE_PROMPT",
+    "label": "对照组",
+    "saved": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 2,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "old": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 2,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "new": {
+      "VDS": 2,
+      "EFS": 2,
+      "NJS": 2,
+      "SCS": 1,
+      "IFR": 2
+    },
+    "old_rs": 5,
+    "new_rs": 7,
+    "old_outcome": "成功",
+    "new_outcome": "成功"
+  },
+  {
+    "sample_id": "S0052",
+    "round_idx": 5,
+    "principle": "RAW_GENRE_PROMPT",
+    "label": "对照组",
+    "saved": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 1,
+      "SCS": 1,
+      "IFR": 2
+    },
+    "old": {
+      "VDS": 2,
+      "EFS": 2,
+      "NJS": 1,
+      "SCS": 2,
+      "IFR": 2
+    },
+    "new": {
+      "VDS": 2,
+      "EFS": 2,
+      "NJS": 2,
+      "SCS": 1,
+      "IFR": 2
+    },
+    "old_rs": 5,
+    "new_rs": 7,
+    "old_outcome": "成功",
+    "new_outcome": "成功"
+  },
+  {
+    "sample_id": "S0306",
+    "round_idx": 2,
+    "principle": "P4_rhetoric",
+    "label": "对照组",
+    "saved": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 2,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "old": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 2,
+      "SCS": 1,
+      "IFR": 2
+    },
+    "new": {
+      "VDS": 2,
+      "EFS": 0,
+      "NJS": 2,
+      "SCS": 1,
+      "IFR": 2
+    },
+    "old_rs": 6,
+    "new_rs": 5,
+    "old_outcome": "成功",
+    "new_outcome": "成功"
+  },
+  {
+    "sample_id": "S0052",
+    "round_idx": 3,
+    "principle": "P4",
+    "label": "对照组",
+    "saved": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 1,
+      "SCS": 1,
+      "IFR": 2
+    },
+    "old": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 2,
+      "SCS": 1,
+      "IFR": 2
+    },
+    "new": {
+      "VDS": 2,
+      "EFS": 2,
+      "NJS": 2,
+      "SCS": 1,
+      "IFR": 2
+    },
+    "old_rs": 6,
+    "new_rs": 7,
+    "old_outcome": "成功",
+    "new_outcome": "成功"
+  },
+  {
+    "sample_id": "S0104",
+    "round_idx": 4,
+    "principle": "P4",
+    "label": "对照组",
+    "saved": {
+      "VDS": 0,
+      "EFS": 2,
+      "NJS": 2,
+      "SCS": 1,
+      "IFR": 2
+    },
+    "old": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 2,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "new": {
+      "VDS": 2,
+      "EFS": 2,
+      "NJS": 2,
+      "SCS": 1,
+      "IFR": 2
+    },
+    "old_rs": 5,
+    "new_rs": 7,
+    "old_outcome": "成功",
+    "new_outcome": "成功"
+  },
+  {
+    "sample_id": "S0126",
+    "round_idx": 3,
+    "principle": "RAW_GENRE_PROMPT",
+    "label": "对照组",
+    "saved": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 2,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "old": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 1,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "new": {
+      "VDS": 2,
+      "EFS": 1,
+      "NJS": 2,
+      "SCS": 1,
+      "IFR": 2
+    },
+    "old_rs": 4,
+    "new_rs": 6,
+    "old_outcome": "部分成功",
+    "new_outcome": "成功"
+  },
+  {
+    "sample_id": "S0113",
+    "round_idx": 6,
+    "principle": "P4_rhetoric",
+    "label": "对照组",
+    "saved": {
+      "VDS": 2,
+      "EFS": 2,
+      "NJS": 1,
+      "SCS": 2,
+      "IFR": 0
+    },
+    "old": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 2,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "new": {
+      "VDS": 2,
+      "EFS": 2,
+      "NJS": 2,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "old_rs": 5,
+    "new_rs": 6,
+    "old_outcome": "成功",
+    "new_outcome": "成功"
+  },
+  {
+    "sample_id": "S0017",
+    "round_idx": 3,
+    "principle": "P4",
+    "label": "对照组",
+    "saved": {
+      "VDS": 0,
+      "EFS": 2,
+      "NJS": 2,
+      "SCS": 1,
+      "IFR": 2
+    },
+    "old": {
+      "VDS": 0,
+      "EFS": 2,
+      "NJS": 1,
+      "SCS": 1,
+      "IFR": 2
+    },
+    "new": {
+      "VDS": 2,
+      "EFS": 2,
+      "NJS": 2,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "old_rs": 4,
+    "new_rs": 6,
+    "old_outcome": "部分成功",
+    "new_outcome": "成功"
+  },
+  {
+    "sample_id": "S0102",
+    "round_idx": 7,
+    "principle": "RAW_GENRE_PROMPT",
+    "label": "对照组",
+    "saved": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 2,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "old": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 2,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "new": {
+      "VDS": 2,
+      "EFS": 2,
+      "NJS": 2,
+      "SCS": 1,
+      "IFR": 2
+    },
+    "old_rs": 5,
+    "new_rs": 7,
+    "old_outcome": "成功",
+    "new_outcome": "成功"
+  },
+  {
+    "sample_id": "S0184",
+    "round_idx": 6,
+    "principle": "P4_rhetoric",
+    "label": "对照组",
+    "saved": {
+      "VDS": 2,
+      "EFS": 2,
+      "NJS": 1,
+      "SCS": 2,
+      "IFR": 0
+    },
+    "old": {
+      "VDS": 1,
+      "EFS": 2,
+      "NJS": 1,
+      "SCS": 1,
+      "IFR": 1
+    },
+    "new": {
+      "VDS": 2,
+      "EFS": 0,
+      "NJS": 2,
+      "SCS": 1,
+      "IFR": 2
+    },
+    "old_rs": 4,
+    "new_rs": 5,
+    "old_outcome": "部分成功",
+    "new_outcome": "成功"
+  }
+]

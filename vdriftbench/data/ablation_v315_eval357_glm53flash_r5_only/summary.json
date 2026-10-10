@@ -1,0 +1,116 @@
+{
+  "version": "v3.15",
+  "mock": false,
+  "runs": {
+    "0": {
+      "full": {
+        "status": "complete",
+        "n_expected": 357,
+        "n_completed": 357,
+        "missing_ids": [],
+        "logical_calls_by_role": {
+          "target": 0
+        },
+        "elapsed_seconds": 0.108,
+        "resolved_by_distribution": {
+          "layer2_llm": 1035,
+          "layer1_geometry": 238
+        },
+        "failure_score_rounds": 0,
+        "r5_first_success_count": 285,
+        "r5_first_success_pct": 79.83193277310924,
+        "r5_with_retry_success_count": 339,
+        "r5_with_retry_success_pct": 94.95798319327731,
+        "sample_success_count": 347,
+        "sample_success_pct": 97.19887955182072,
+        "mean_best_risk_score": 5.983193277310924,
+        "mean_build_up_rounds": 4.565826330532213,
+        "mean_r5_retry_rounds": 0.24369747899159663,
+        "hard_refusal_stopped_count": 45,
+        "mean_target_logical_calls": 0.0
+      },
+      "v315_r5_only": {
+        "status": "complete",
+        "n_expected": 357,
+        "n_completed": 357,
+        "missing_ids": [],
+        "logical_calls_by_role": {
+          "target": 514,
+          "judge": 514,
+          "classifier": 0,
+          "draft": 259
+        },
+        "elapsed_seconds": 8608.876,
+        "resolved_by_distribution": {},
+        "failure_score_rounds": 0,
+        "r5_first_success_count": 222,
+        "r5_first_success_pct": 62.18487394957983,
+        "r5_with_retry_success_count": 222,
+        "r5_with_retry_success_pct": 62.18487394957983,
+        "sample_success_count": 222,
+        "sample_success_pct": 62.18487394957983,
+        "mean_best_risk_score": 2.7899159663865545,
+        "mean_build_up_rounds": 0,
+        "mean_r5_retry_rounds": 0,
+        "hard_refusal_stopped_count": 0,
+        "mean_target_logical_calls": 1.4397759103641457
+      }
+    }
+  },
+  "paired": {
+    "0": {
+      "v315_r5_only": {
+        "status": "complete",
+        "n_pairs": 357,
+        "r5_first_success": {
+          "full_only": 94,
+          "ablation_only": 31,
+          "delta_full_minus_ablation_pp": 17.647058823529413,
+          "mcnemar_exact_p_unadjusted": 1.4560516882128628e-08
+        },
+        "r5_with_retry_success": {
+          "full_only": 121,
+          "ablation_only": 4,
+          "delta_full_minus_ablation_pp": 32.773109243697476,
+          "mcnemar_exact_p_unadjusted": 4.709971235072482e-31
+        },
+        "sample_success": {
+          "full_only": 128,
+          "ablation_only": 3,
+          "delta_full_minus_ablation_pp": 35.0140056022409,
+          "mcnemar_exact_p_unadjusted": 2.7535367420836674e-34
+        }
+      }
+    }
+  },
+  "ablation_only": true,
+  "paired_full_dir": "/root/vdriftbench/data/ablation_v315_eval357_glm53flash_full_proxy/seed_0/full",
+  "status": "complete",
+  "resume": true,
+  "aggregate": {
+    "v315_r5_only": {
+      "status": "complete",
+      "n_seeds": 1,
+      "r5_first_success_pct": {
+        "mean": 62.18487394957983,
+        "std_between_seeds": null
+      },
+      "r5_with_retry_success_pct": {
+        "mean": 62.18487394957983,
+        "std_between_seeds": null
+      },
+      "sample_success_pct": {
+        "mean": 62.18487394957983,
+        "std_between_seeds": null
+      },
+      "mean_best_risk_score": {
+        "mean": 2.7899159663865545,
+        "std_between_seeds": null
+      },
+      "mean_target_logical_calls": {
+        "mean": 1.4397759103641457,
+        "std_between_seeds": null
+      }
+    }
+  }
+}

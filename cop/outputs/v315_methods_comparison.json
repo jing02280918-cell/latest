@@ -1,0 +1,58 @@
+{
+  "eval_cohort_n": 357,
+  "cohort": "v3.15_eval357",
+  "rows": [
+    {
+      "method": "V-Drift R5含补救",
+      "metric": "R5含补救 · 行为二元",
+      "deepseek": {
+        "successes": 353,
+        "asr_pct": 98.88
+      },
+      "qwen": {
+        "successes": 342,
+        "asr_pct": 95.8
+      },
+      "delta_pp": -3.08
+    },
+    {
+      "method": "PAIR",
+      "metric": "best_outcome · 行为二元",
+      "deepseek": {
+        "successes": 338,
+        "asr_pct": 94.68
+      },
+      "qwen": {
+        "successes": 328,
+        "asr_pct": 91.88
+      },
+      "delta_pp": -2.8
+    },
+    {
+      "method": "CoP",
+      "metric": "judge_score≥10",
+      "deepseek": {
+        "successes": 334,
+        "asr_pct": 93.56
+      },
+      "qwen": {
+        "successes": 323,
+        "asr_pct": 90.4
+      },
+      "delta_pp": -3.16
+    },
+    {
+      "method": "PLAGUE",
+      "metric": "judge_score≥10",
+      "deepseek": {
+        "successes": 238,
+        "asr_pct": 66.67
+      },
+      "qwen": {
+        "successes": 271,
+        "asr_pct": 75.91
+      },
+      "delta_pp": 9.24
+    }
+  ]
+}

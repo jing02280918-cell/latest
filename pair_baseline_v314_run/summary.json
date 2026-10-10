@@ -1,0 +1,19 @@
+{
+  "n": 314,
+  "n_ok": 314,
+  "success_pct": 93.94904458598727,
+  "partial_pct": 0.0,
+  "fail_pct": 6.050955414012739,
+  "success_n": 295,
+  "partial_n": 0,
+  "fail_n": 19,
+  "avg_queries": 3.1878980891719744,
+  "avg_best_rs": 4.659235668789809,
+  "elapsed_s": 2165.3384206295013,
+  "generated_at": "2026-09-08T19:11:10",
+  "judge_outcome_mode": "行为二元",
+  "judge_n_samples": 1,
+  "judge_per_dimension": false,
+  "target_model": "deepseek-v4-pro",
+  "target_max_tokens": null
+}

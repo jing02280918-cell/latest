@@ -1,0 +1,26 @@
+{
+  "status": "complete",
+  "n_expected": 357,
+  "n_completed": 357,
+  "missing_ids": [],
+  "logical_calls_by_role": {
+    "target": 42,
+    "judge": 38,
+    "classifier": 0,
+    "draft": 21
+  },
+  "elapsed_seconds": 761.495,
+  "resolved_by_distribution": {},
+  "failure_score_rounds": 0,
+  "r5_first_success_count": 187,
+  "r5_first_success_pct": 52.38095238095238,
+  "r5_with_retry_success_count": 187,
+  "r5_with_retry_success_pct": 52.38095238095238,
+  "sample_success_count": 187,
+  "sample_success_pct": 52.38095238095238,
+  "mean_best_risk_score": 2.7254901960784315,
+  "mean_build_up_rounds": 0,
+  "mean_r5_retry_rounds": 0,
+  "hard_refusal_stopped_count": 0,
+  "mean_target_logical_calls": 0.11764705882352941
+}

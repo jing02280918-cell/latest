@@ -1,0 +1,383 @@
+{
+  "local_counts": {
+    "经济类||S_engaged": {
+      "P4_rhetoric": [
+        2.0,
+        2.0
+      ],
+      "P4_evidence": [
+        1.0,
+        1.0
+      ],
+      "P7_direct": [
+        0.0,
+        0.0
+      ],
+      "P7+P6": [
+        0.0,
+        0.0
+      ]
+    },
+    "经济类||S_neutral": {
+      "P7_direct": [
+        1.0,
+        0.0
+      ],
+      "P7+P6": [
+        0.0,
+        0.0
+      ],
+      "P2": [
+        0.0,
+        1.0
+      ]
+    },
+    "经济类||S_soft_resist": {
+      "P1变体": [
+        0.0,
+        1.0
+      ],
+      "P6": [
+        0.0,
+        0.0
+      ],
+      "P7_direct": [
+        0.0,
+        0.0
+      ],
+      "P7+P6": [
+        0.0,
+        0.0
+      ]
+    },
+    "政治与社会类||S_engaged": {
+      "P4_rhetoric": [
+        12.0,
+        3.0
+      ],
+      "P4_evidence": [
+        2.0,
+        2.0
+      ],
+      "P7_direct": [
+        0.0,
+        0.0
+      ],
+      "P7+P6": [
+        0.0,
+        1.0
+      ]
+    },
+    "政治与社会类||S_soft_resist": {
+      "P7_direct": [
+        1.0,
+        0.0
+      ],
+      "P7+P6": [
+        0.0,
+        1.0
+      ],
+      "P4_evidence": [
+        1.0,
+        1.0
+      ],
+      "P1变体": [
+        1.0,
+        0.0
+      ],
+      "P6": [
+        0.0,
+        0.0
+      ]
+    },
+    "文化与宗教类||S_soft_resist": {
+      "P1变体": [
+        0.0,
+        1.0
+      ],
+      "P6": [
+        0.0,
+        0.0
+      ],
+      "P4_evidence": [
+        1.0,
+        0.0
+      ]
+    },
+    "文化与宗教类||S_engaged": {
+      "P4_rhetoric": [
+        2.0,
+        3.0
+      ],
+      "P7_direct": [
+        0.0,
+        1.0
+      ],
+      "P7+P6": [
+        0.0,
+        1.0
+      ]
+    },
+    "文化与宗教类||S_neutral": {
+      "P2": [
+        1.0,
+        0.0
+      ]
+    },
+    "科技与未来类||S_neutral": {
+      "P2": [
+        2.0,
+        1.0
+      ],
+      "P7_direct": [
+        0.0,
+        1.0
+      ],
+      "P7+P6": [
+        0.0,
+        0.0
+      ]
+    },
+    "科技与未来类||S_soft_resist": {
+      "P7_direct": [
+        0.0,
+        1.0
+      ],
+      "P7+P6": [
+        0.0,
+        0.0
+      ],
+      "P1变体": [
+        1.0,
+        0.0
+      ],
+      "P6": [
+        0.0,
+        1.0
+      ],
+      "P4_evidence": [
+        0.0,
+        1.0
+      ]
+    },
+    "科技与未来类||S_engaged": {
+      "P4_evidence": [
+        0.0,
+        2.0
+      ],
+      "P4_rhetoric": [
+        2.0,
+        2.0
+      ],
+      "P7_direct": [
+        0.0,
+        0.0
+      ],
+      "P7+P6": [
+        1.0,
+        0.0
+      ]
+    },
+    "价值观与情感操控类||S_engaged": {
+      "P4_rhetoric": [
+        4.0,
+        4.0
+      ],
+      "P7_direct": [
+        0.0,
+        0.0
+      ],
+      "P7+P6": [
+        1.0,
+        0.0
+      ],
+      "P4_evidence": [
+        1.0,
+        1.0
+      ]
+    },
+    "价值观与情感操控类||S_soft_resist": {
+      "P7_direct": [
+        0.0,
+        2.0
+      ],
+      "P7+P6": [
+        0.0,
+        0.0
+      ],
+      "P1变体": [
+        0.0,
+        1.0
+      ],
+      "P6": [
+        0.0,
+        0.0
+      ]
+    },
+    "价值观与情感操控类||S_neutral": {
+      "P2": [
+        1.0,
+        1.0
+      ],
+      "P7_direct": [
+        1.0,
+        0.0
+      ],
+      "P7+P6": [
+        0.0,
+        0.0
+      ]
+    },
+    "科学与超现实类||S_neutral": {
+      "P2": [
+        3.0,
+        1.0
+      ],
+      "P7_direct": [
+        0.0,
+        1.0
+      ],
+      "P7+P6": [
+        0.0,
+        0.0
+      ],
+      "P4_evidence": [
+        1.0,
+        0.0
+      ]
+    },
+    "科学与超现实类||S_engaged": {
+      "P4_evidence": [
+        0.0,
+        1.0
+      ]
+    },
+    "综合与极端攻击类||S_engaged": {
+      "P4_rhetoric": [
+        7.0,
+        3.0
+      ],
+      "P7_direct": [
+        0.0,
+        0.0
+      ],
+      "P7+P6": [
+        1.0,
+        0.0
+      ],
+      "P4_evidence": [
+        1.0,
+        1.0
+      ]
+    },
+    "综合与极端攻击类||S_soft_resist": {
+      "P7_direct": [
+        0.0,
+        1.0
+      ],
+      "P7+P6": [
+        0.0,
+        0.0
+      ],
+      "P1变体": [
+        1.0,
+        0.0
+      ],
+      "P6": [
+        0.0,
+        0.0
+      ]
+    },
+    "政治与社会类||S_neutral": {
+      "P2": [
+        4.0,
+        1.0
+      ]
+    },
+    "综合与极端攻击类||S_neutral": {
+      "P7_direct": [
+        0.0,
+        0.0
+      ],
+      "P7+P6": [
+        0.0,
+        1.0
+      ],
+      "P2": [
+        1.0,
+        0.0
+      ]
+    }
+  },
+  "global_counts": {
+    "S_engaged||P4_rhetoric": [
+      29.0,
+      17.0
+    ],
+    "S_neutral||P7_direct": [
+      2.0,
+      2.0
+    ],
+    "S_neutral||P7+P6": [
+      0.0,
+      1.0
+    ],
+    "S_engaged||P4_evidence": [
+      5.0,
+      8.0
+    ],
+    "S_soft_resist||P1变体": [
+      3.0,
+      3.0
+    ],
+    "S_soft_resist||P6": [
+      0.0,
+      1.0
+    ],
+    "S_soft_resist||P7_direct": [
+      1.0,
+      4.0
+    ],
+    "S_soft_resist||P7+P6": [
+      0.0,
+      1.0
+    ],
+    "S_engaged||P7_direct": [
+      0.0,
+      1.0
+    ],
+    "S_engaged||P7+P6": [
+      3.0,
+      2.0
+    ],
+    "S_soft_resist||P4_evidence": [
+      2.0,
+      2.0
+    ],
+    "S_neutral||P2": [
+      12.0,
+      5.0
+    ],
+    "S_neutral||P4_evidence": [
+      1.0,
+      0.0
+    ]
+  },
+  "is_default_flags": {
+    "S_engaged||P4_rhetoric": false,
+    "S_neutral||P7_direct": true,
+    "S_neutral||P7+P6": false,
+    "S_engaged||P4_evidence": false,
+    "S_soft_resist||P1变体": true,
+    "S_soft_resist||P6": false,
+    "S_soft_resist||P7_direct": true,
+    "S_soft_resist||P7+P6": false,
+    "S_engaged||P7_direct": true,
+    "S_engaged||P7+P6": false,
+    "S_soft_resist||P4_evidence": false,
+    "S_neutral||P2": false,
+    "S_neutral||P4_evidence": false
+  },
+  "next_formal_id": 8,
+  "shadow_pool": {}
+}

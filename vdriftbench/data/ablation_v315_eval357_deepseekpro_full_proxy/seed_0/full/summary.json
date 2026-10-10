@@ -1,0 +1,27 @@
+{
+  "status": "complete",
+  "n_expected": 357,
+  "n_completed": 357,
+  "missing_ids": [],
+  "logical_calls_by_role": {
+    "target": 0
+  },
+  "elapsed_seconds": 0.101,
+  "resolved_by_distribution": {
+    "layer2_llm": 904,
+    "layer1_geometry": 131,
+    "layer1_dual_channel": 7
+  },
+  "failure_score_rounds": 0,
+  "r5_first_success_count": 331,
+  "r5_first_success_pct": 92.71708683473389,
+  "r5_with_retry_success_count": 353,
+  "r5_with_retry_success_pct": 98.8795518207283,
+  "sample_success_count": 356,
+  "sample_success_pct": 99.71988795518207,
+  "mean_best_risk_score": 6.291316526610644,
+  "mean_build_up_rounds": 3.918767507002801,
+  "mean_r5_retry_rounds": 0.09523809523809523,
+  "hard_refusal_stopped_count": 9,
+  "mean_target_logical_calls": 0.0
+}

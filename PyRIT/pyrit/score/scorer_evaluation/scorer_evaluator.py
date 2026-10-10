@@ -1,0 +1,821 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
+from __future__ import annotations
+
+import abc
+import logging
+import time
+from dataclasses import dataclass
+from typing import TYPE_CHECKING, cast
+
+import numpy as np
+from scipy.stats import ttest_1samp
+
+from pyrit.common.path import SCORER_EVALS_PATH
+from pyrit.models import MessageScorable, Score, ScoringExpectation, UndeterminedScoreError
+from pyrit.models.harm_category import HarmCategory
+from pyrit.prompt_target.batch_helper import batch_task_async
+from pyrit.score.message_scorer import extract_objective_from_previous_turn
+from pyrit.score.scorer_evaluation.human_labeled_dataset import (
+    HarmHumanLabeledEntry,
+    HumanLabeledDataset,
+    ObjectiveHumanLabeledEntry,
+)
+from pyrit.score.scorer_evaluation.krippendorff import krippendorff_alpha
+from pyrit.score.scorer_evaluation.metrics_type import MetricsType, RegistryUpdateBehavior
+from pyrit.score.scorer_evaluation.scorer_metrics import HarmScorerMetrics, ObjectiveScorerMetrics, ScorerMetrics
+from pyrit.score.scorer_evaluation.scorer_metrics_io import (
+    find_harm_metrics_by_eval_hash,
+    find_objective_metrics_by_eval_hash,
+    replace_evaluation_results,
+)
+from pyrit.score.true_false.true_false_scorer import TrueFalseScorer
+
+if TYPE_CHECKING:
+    from pathlib import Path
+
+    from pyrit.models import Message
+    from pyrit.prompt_target import PromptTarget
+    from pyrit.score import Scorer
+
+logger = logging.getLogger(__name__)
+
+
+@dataclass
+class ScorerEvalDatasetFiles:
+    """
+    Configuration for evaluating a scorer on a set of dataset files.
+
+    Maps input dataset files (via glob patterns) to an output result file.
+    Multiple files matching the patterns will be concatenated before evaluation.
+
+    Args:
+        human_labeled_datasets_files (list[str]): List of glob patterns to match CSV files.
+            Examples: ``["objective/*.csv"]``, ``["objective/hate_speech.csv", "objective/violence.csv"]``
+        result_file (str): Name of the result file (stem used as dict key in results).
+            Example: ``"objective_achieved_metrics.jsonl"``
+        harm_category (str | None): The harm category for harm scorers (e.g., "hate_speech", "violence").
+            Required for harm evaluations, ignored for objective evaluations. Defaults to None.
+    """
+
+    human_labeled_datasets_files: list[str]
+    result_file: str
+    harm_category: str | None = None
+
+
+class ScorerEvaluator(abc.ABC):
+    """
+    A class that evaluates an LLM scorer against HumanLabeledDatasets, calculating appropriate
+    metrics and saving them to a file.
+    """
+
+    # Subclasses must define the expected metrics type
+    expected_metrics_type: MetricsType
+
+    def __init__(self, scorer: Scorer) -> None:
+        """
+        Initialize the ScorerEvaluator with a scorer.
+
+        Args:
+            scorer (Scorer): The scorer to evaluate.
+        """
+        self.scorer = scorer
+
+    @classmethod
+    def from_scorer(cls, scorer: Scorer, metrics_type: MetricsType | None = None) -> ScorerEvaluator:
+        """
+        Create a ScorerEvaluator based on the type of scoring.
+
+        Args:
+            scorer (Scorer): The scorer to evaluate.
+            metrics_type (MetricsType): The type of scoring, either HARM or OBJECTIVE.
+                If not provided, it will default to OBJECTIVE for true/false scorers and HARM for all other
+                scorers.
+
+        Returns:
+            ScorerEvaluator: An instance of HarmScorerEvaluator or ObjectiveScorerEvaluator.
+        """
+        if not metrics_type:
+            metrics_type = MetricsType.OBJECTIVE if isinstance(scorer, TrueFalseScorer) else MetricsType.HARM
+
+        evaluator_map = {MetricsType.HARM: HarmScorerEvaluator, MetricsType.OBJECTIVE: ObjectiveScorerEvaluator}
+
+        evaluator = evaluator_map.get(metrics_type, HarmScorerEvaluator)
+        return evaluator(scorer=scorer)
+
+    async def run_evaluation_async(
+        self,
+        *,
+        dataset_files: ScorerEvalDatasetFiles,
+        num_scorer_trials: int = 3,
+        update_registry_behavior: RegistryUpdateBehavior = RegistryUpdateBehavior.SKIP_IF_EXISTS,
+        max_concurrency: int = 10,
+    ) -> ScorerMetrics | None:
+        """
+        Evaluate scorer using dataset files configuration.
+
+        The update_registry_behavior parameter controls how existing registry entries are handled:
+
+        - SKIP_IF_EXISTS (default): Check registry for existing results matching scorer config,
+            dataset version, and num_scorer_trials. If found, return cached metrics.
+            If not found, run evaluation and write to registry.
+        - ALWAYS_UPDATE: Always run evaluation and overwrite any existing registry entry.
+        - NEVER_UPDATE: Always run evaluation but never write to registry (for debugging).
+
+        Args:
+            dataset_files: ScorerEvalDatasetFiles configuration specifying glob patterns
+                for input files and a result file name.
+            num_scorer_trials: Number of scoring trials per response. Defaults to 3.
+            update_registry_behavior: Controls how existing registry entries are handled.
+                Defaults to RegistryUpdateBehavior.SKIP_IF_EXISTS.
+            max_concurrency: Maximum number of concurrent scoring requests. Defaults to 10.
+
+        Returns:
+            ScorerMetrics if evaluation completed, None if no files found.
+
+        Raises:
+            ValueError: If harm_category is not specified for harm scorer evaluations.
+        """
+        metrics_type = MetricsType.OBJECTIVE if isinstance(self.scorer, TrueFalseScorer) else MetricsType.HARM
+
+        # Validate harm_category for harm scorers
+        if metrics_type == MetricsType.HARM and dataset_files.harm_category is None:
+            raise ValueError(
+                f"harm_category must be specified in ScorerEvalDatasetFiles for harm scorer evaluations. "
+                f"Missing for result_file: {dataset_files.result_file}"
+            )
+
+        # Collect all matching files
+        csv_files: list[Path] = []
+        for pattern in dataset_files.human_labeled_datasets_files:
+            matched = list(SCORER_EVALS_PATH.glob(pattern))
+            csv_files.extend(matched)
+
+        if not csv_files:
+            logger.warning(f"No files found for patterns {dataset_files.human_labeled_datasets_files}")
+            return None
+
+        # Load each CSV as a HumanLabeledDataset and combine entries
+        # Sort csv_files for deterministic ordering when concatenating versions
+        csv_files = sorted(csv_files)
+        all_entries = []
+        dataset_versions = []
+        harm_definition_versions = set()
+        harm_definitions = set()
+        for csv_file in csv_files:
+            dataset = HumanLabeledDataset.from_csv(
+                csv_path=csv_file,
+                metrics_type=metrics_type,
+            )
+            all_entries.extend(dataset.entries)
+            dataset_versions.append(dataset.version)
+            if dataset.harm_definition_version:
+                harm_definition_versions.add(dataset.harm_definition_version)
+            if dataset.harm_definition:
+                harm_definitions.add(dataset.harm_definition)
+
+        # Concatenate all dataset versions (including duplicates) for full traceability
+        # e.g., combining 3 CSVs all at v1.0 yields "1.0_1.0_1.0"
+        combined_version = "_".join(dataset_versions)
+
+        # Validate harm_definition_version consistency across all CSVs within a harm category.
+        # Since each harm category evaluation uses a single harm definition YAML file,
+        # all CSVs for that harm must have been labeled against the same version of that definition.
+        if len(harm_definition_versions) > 1:
+            raise ValueError(
+                f"All CSVs in a harm evaluation must use the same harm_definition_version, "
+                f"but found multiple versions: {sorted(harm_definition_versions)}."
+            )
+        combined_harm_definition_version = next(iter(harm_definition_versions)) if harm_definition_versions else None
+
+        # Use the harm definition declared by the CSV instead of deriving it from the category.
+        if len(harm_definitions) > 1:
+            raise ValueError(
+                f"All CSVs in a harm evaluation must reference the same harm_definition, "
+                f"but found multiple: {sorted(harm_definitions)}."
+            )
+        if harm_definitions:
+            harm_definition = next(iter(harm_definitions))
+        elif metrics_type == MetricsType.HARM:
+            raise ValueError(
+                f"No harm_definition found in CSV headers for harm category '{dataset_files.harm_category}'. "
+                f"Add a '# harm_definition=<filename>.yaml' comment line to your CSV files."
+            )
+        else:
+            harm_definition = None
+
+        # Build dataset name from input CSV files
+        dataset_name = "_".join(sorted(csv_file.name for csv_file in csv_files))
+
+        # Create combined dataset
+        combined_dataset = HumanLabeledDataset(
+            entries=all_entries,
+            metrics_type=metrics_type,
+            name=dataset_name,
+            version=combined_version,
+            harm_definition=harm_definition,
+            harm_definition_version=combined_harm_definition_version,
+        )
+
+        # Check for existing metrics only in SKIP_IF_EXISTS mode
+        if update_registry_behavior == RegistryUpdateBehavior.SKIP_IF_EXISTS:
+            should_skip, existing_metrics = self._should_skip_evaluation(
+                dataset_version=combined_version,
+                harm_definition_version=combined_harm_definition_version,
+                num_scorer_trials=num_scorer_trials,
+                harm_category=dataset_files.harm_category,
+                result_file_path=SCORER_EVALS_PATH / dataset_files.result_file,
+            )
+            if should_skip and existing_metrics:
+                logger.info(
+                    f"Using existing evaluation results for {dataset_files.result_file}. "
+                    f"(set update_registry_behavior=ALWAYS_UPDATE to force re-run)"
+                )
+                return existing_metrics
+
+        # Run evaluation
+        metrics = await self.evaluate_dataset_async(
+            labeled_dataset=combined_dataset,
+            num_scorer_trials=num_scorer_trials,
+            max_concurrency=max_concurrency,
+        )
+
+        # Write to registry unless in NEVER_UPDATE mode
+        if update_registry_behavior != RegistryUpdateBehavior.NEVER_UPDATE:
+            self._write_metrics_to_registry(
+                metrics=metrics,
+                result_file_path=SCORER_EVALS_PATH / dataset_files.result_file,
+            )
+
+        return metrics
+
+    def _should_skip_evaluation(
+        self,
+        *,
+        dataset_version: str,
+        harm_definition_version: str | None = None,
+        num_scorer_trials: int,
+        harm_category: str | None = None,
+        result_file_path: Path,
+    ) -> tuple[bool, ScorerMetrics | None]:
+        """
+        Determine whether to skip evaluation based on existing registry entries.
+
+        Decision logic (only one entry per scorer hash is maintained):
+        - If no existing entry: run evaluation
+        - If existing dataset_version differs from requested: run and replace (assume newer dataset)
+        - If existing harm_definition_version differs from requested: run and replace (scoring criteria changed)
+        - If versions match and existing num_scorer_trials >= requested: skip (existing is sufficient)
+        - If versions match and existing num_scorer_trials < requested: run and replace (higher fidelity)
+
+        Args:
+            dataset_version (str): The version of the dataset.
+            harm_definition_version (str | None): Version of the harm definition YAML. For harm evaluations.
+            num_scorer_trials (int): Number of scorer trials requested.
+            harm_category (str | None): The harm category for harm scorers. Required for harm evaluations.
+            result_file_path (Path): Path to the result file to search.
+
+        Returns:
+            tuple[bool, ScorerMetrics | None]: (should_skip, existing_metrics)
+                - (True, metrics) if should skip and use existing metrics
+                - (False, None) if should run evaluation
+        """
+        try:
+            scorer_hash = self.scorer.get_identifier().eval_hash
+
+            if scorer_hash is None:
+                logger.debug("No eval_hash available for scorer, cannot check existing metrics")
+                return (False, None)
+
+            # Determine if this is a harm or objective evaluation
+            metrics_type = MetricsType.OBJECTIVE if isinstance(self.scorer, TrueFalseScorer) else MetricsType.HARM
+
+            existing: ScorerMetrics | None = None
+            if metrics_type == MetricsType.HARM:
+                if harm_category is None:
+                    logger.warning("harm_category must be provided for harm scorer evaluations")
+                    return (False, None)
+                existing = find_harm_metrics_by_eval_hash(
+                    eval_hash=scorer_hash,
+                    file_path=result_file_path,
+                )
+            else:
+                existing = find_objective_metrics_by_eval_hash(
+                    file_path=result_file_path,
+                    eval_hash=scorer_hash,
+                )
+
+            if not existing:
+                logger.debug(f"No existing metrics found for hash {scorer_hash[:8]}...")
+                return (False, None)
+
+            # Check if dataset_version differs - if so, run and replace (assume newer dataset)
+            if existing.dataset_version != dataset_version:
+                logger.info(
+                    f"Dataset version changed ({existing.dataset_version} -> {dataset_version}). "
+                    f"Will re-run evaluation and replace existing entry."
+                )
+                return (False, None)
+
+            # Check if harm_definition_version differs - if so, run and replace (scoring criteria changed)
+            if (
+                harm_definition_version is not None
+                and isinstance(existing, HarmScorerMetrics)
+                and existing.harm_definition_version != harm_definition_version
+            ):
+                logger.info(
+                    f"Harm definition version changed "
+                    f"({existing.harm_definition_version} -> {harm_definition_version}). "
+                    f"Will re-run evaluation and replace existing entry."
+                )
+                return (False, None)
+
+            # Versions match - check num_scorer_trials
+            if existing.num_scorer_trials >= num_scorer_trials:
+                logger.info(
+                    f"Found existing metrics with sufficient trials: "
+                    f"dataset_version={dataset_version}, num_scorer_trials={existing.num_scorer_trials} "
+                    f"(requested {num_scorer_trials}). Skipping evaluation."
+                )
+                return (True, existing)
+            logger.info(
+                f"Existing metrics have fewer trials ({existing.num_scorer_trials} < {num_scorer_trials}). "
+                f"Will re-run evaluation with more trials and replace existing entry."
+            )
+            return (False, None)
+
+        except Exception as e:
+            logger.warning(f"Error checking for existing metrics: {e}")
+            return (False, None)
+
+    async def evaluate_dataset_async(
+        self,
+        labeled_dataset: HumanLabeledDataset,
+        num_scorer_trials: int = 1,
+        max_concurrency: int = 10,
+    ) -> ScorerMetrics:
+        """
+        Run the evaluation for the scorer/policy combination on the passed in HumanLabeledDataset.
+
+        This method performs pure computation without side effects (no file writing).
+        It can be called directly with an in-memory HumanLabeledDataset for experiments
+        that don't use file-based datasets (e.g., iterative rubric tuning with custom splits).
+
+        Args:
+            labeled_dataset (HumanLabeledDataset): The HumanLabeledDataset to evaluate the scorer against.
+            num_scorer_trials (int): The number of trials to run the scorer on all responses.
+            max_concurrency (int): Maximum number of concurrent scoring requests. Defaults to 10.
+
+        Returns:
+            ScorerMetrics: The metrics for the scorer. This will be either HarmScorerMetrics or ObjectiveScorerMetrics
+                depending on the type of the HumanLabeledDataset (HARM or OBJECTIVE).
+
+        Raises:
+            ValueError: If the labeled_dataset is invalid.
+        """
+        # Validate dataset and extract data
+        assistant_responses, human_scores_list, objectives = self._validate_and_extract_data(labeled_dataset)
+
+        # Harm datasets carry no objective, so the previous turn stands in for one.
+        resolved_objectives = objectives or [
+            extract_objective_from_previous_turn(message=response, memory=self.scorer._memory)
+            for response in assistant_responses
+        ]
+
+        # Transpose human scores so each row is a complete set of scores across all responses
+        all_human_scores = np.array(human_scores_list).T
+
+        harm_category = None
+        if labeled_dataset.metrics_type == MetricsType.HARM and labeled_dataset.entries:
+            first_entry = labeled_dataset.entries[0]
+            if isinstance(first_entry, HarmHumanLabeledEntry):
+                harm_category = first_entry.harm_category
+            if harm_category is None:
+                raise ValueError(
+                    "harm_category must be set in HarmHumanLabeledEntry for HARM datasets. "
+                    "Ensure all entries have a valid harm_category."
+                )
+
+        # Run scoring trials and measure timing
+        all_model_scores_list = []
+        determined_responses = np.ones(len(assistant_responses), dtype=bool)
+        total_scoring_time = 0.0
+        total_scored_items = 0
+        for _ in range(num_scorer_trials):
+            start_time = time.perf_counter()
+            score_groups = await self._score_responses_grouped_async(
+                responses=assistant_responses,
+                objectives=resolved_objectives,
+                max_concurrency=max_concurrency,
+            )
+            elapsed_time = time.perf_counter() - start_time
+            total_scoring_time += elapsed_time
+            total_scored_items += len(score_groups)
+            score_values: list[bool | float] = []
+            for index, scores in enumerate(score_groups):
+                score = self._select_evaluation_score(scores=scores, harm_category=harm_category)
+                if score is None:
+                    determined_responses[index] = False
+                    score_values.append(False if self.expected_metrics_type == MetricsType.OBJECTIVE else 0.0)
+                    continue
+                try:
+                    score_values.append(score.get_value())
+                except UndeterminedScoreError:
+                    determined_responses[index] = False
+                    score_values.append(False if self.expected_metrics_type == MetricsType.OBJECTIVE else 0.0)
+            all_model_scores_list.append(score_values)
+        if not determined_responses.any():
+            raise ValueError("Scorer evaluation produced no determined scores to compare with human labels.")
+        all_model_scores = np.array(all_model_scores_list)[:, determined_responses]
+        all_human_scores = all_human_scores[:, determined_responses]
+
+        # Calculate average time per scored item
+        average_score_time = total_scoring_time / total_scored_items if total_scored_items > 0 else 0.0
+
+        # Compute metrics using subclass implementation
+        metrics = self._compute_metrics(
+            all_human_scores=all_human_scores,
+            all_model_scores=all_model_scores,
+            num_scorer_trials=num_scorer_trials,
+            dataset_name=labeled_dataset.name,
+            dataset_version=labeled_dataset.version,
+            harm_category=harm_category,
+            harm_definition=labeled_dataset.harm_definition,
+            harm_definition_version=labeled_dataset.harm_definition_version,
+        )
+
+        # Include trial scores for debugging and future mismatch analysis
+        # (not persisted to registry - use returned metrics object for detailed analysis)
+        metrics.trial_scores = all_model_scores
+        # Include average scoring time per item
+        metrics.average_score_time_seconds = average_score_time
+
+        return metrics
+
+    async def _score_responses_grouped_async(
+        self,
+        *,
+        responses: list[Message],
+        objectives: list[str],
+        max_concurrency: int,
+    ) -> list[list[Score]]:
+        """
+        Score each response while retaining its result-list boundary.
+
+        Returns:
+            list[list[Score]]: One score list for each response.
+        """
+        results = await batch_task_async(
+            task_func=self.scorer.score_async,
+            task_arguments=["scorable", "expectation"],
+            prompt_target=cast("PromptTarget", getattr(self.scorer, "_prompt_target", None)),
+            batch_size=max_concurrency,
+            items_to_batch=[
+                [MessageScorable.from_message(response) for response in responses],
+                [ScoringExpectation(objective=objective) for objective in objectives],
+            ],
+        )
+        return cast("list[list[Score]]", results)
+
+    @staticmethod
+    def _score_matches_harm_category(*, score: Score, harm_category: str) -> bool:
+        """Return whether a score category matches a canonical or aliased harm category."""
+        target_casefold = harm_category.casefold()
+        if any(c.casefold() == target_casefold for c in score.score_category or []):
+            return True
+
+        labeled_category = HarmCategory.parse(harm_category)
+        if labeled_category == HarmCategory.OTHER and target_casefold != "other":
+            return False
+
+        for score_category in score.score_category or []:
+            score_category_parsed = HarmCategory.parse(score_category)
+            if score_category_parsed == HarmCategory.OTHER and score_category.casefold() != "other":
+                continue
+            if score_category_parsed == labeled_category:
+                return True
+        return False
+
+    @staticmethod
+    def _select_evaluation_score(*, scores: list[Score], harm_category: str | None) -> Score | None:
+        """
+        Select the one score that corresponds to a labeled response.
+
+        A lone score is taken as the answer, because most scorers report one verdict and leave
+        ``score_category`` empty. It is rejected only when it names categories and the labeled
+        harm is not among them, which is a real mismatch rather than a missing label.
+
+        Returns:
+            Score | None: The selected score, or None if the scorer returned no scores.
+
+        Raises:
+            ValueError: If the scores do not hold exactly one match for the labeled harm.
+        """
+        if not scores:
+            return None
+
+        if len(scores) == 1:
+            categories = scores[0].score_category or []
+            if (
+                harm_category is None
+                or not categories
+                or ScorerEvaluator._score_matches_harm_category(score=scores[0], harm_category=harm_category)
+            ):
+                return scores[0]
+            raise ValueError(
+                f"Scorer evaluation requires a score for harm category '{harm_category}', "
+                f"but the single score returned is categorized as {categories}."
+            )
+
+        category_matches = [
+            score
+            for score in scores
+            if harm_category is not None
+            and ScorerEvaluator._score_matches_harm_category(score=score, harm_category=harm_category)
+        ]
+        if len(category_matches) == 1:
+            return category_matches[0]
+
+        category_detail = f" for harm category '{harm_category}'" if harm_category else ""
+        raise ValueError(
+            f"Scorer evaluation requires exactly one score per response{category_detail}, "
+            f"but received {len(scores)} scores and found {len(category_matches)} category matches."
+        )
+
+    @abc.abstractmethod
+    def _validate_and_extract_data(
+        self,
+        labeled_dataset: HumanLabeledDataset,
+    ) -> tuple[list[Message], list[list[float]], list[str] | None]:
+        """
+        Validate the dataset and extract data for evaluation.
+
+        Args:
+            labeled_dataset: The dataset to validate and extract from.
+
+        Returns:
+            Tuple of (assistant_responses, human_scores_list, objectives).
+            objectives may be None for harm scoring.
+
+        Raises:
+            ValueError: If the dataset is invalid for this evaluator.
+        """
+
+    @abc.abstractmethod
+    def _compute_metrics(
+        self,
+        *,
+        all_human_scores: np.ndarray,
+        all_model_scores: np.ndarray,
+        num_scorer_trials: int,
+        dataset_name: str | None = None,
+        dataset_version: str | None = None,
+        harm_category: str | None = None,
+        harm_definition: str | None = None,
+        harm_definition_version: str | None = None,
+    ) -> ScorerMetrics:
+        """
+        Compute evaluation metrics from human and model scores.
+
+        Args:
+            all_human_scores: Array of human scores, shape (num_raters, num_responses).
+            all_model_scores: Array of model scores, shape (num_trials, num_responses).
+            num_scorer_trials: Number of scoring trials that were performed.
+            dataset_name: Name of the dataset being evaluated.
+            dataset_version: Version of the dataset.
+            harm_category: Harm category for harm metrics (ignored for objective metrics).
+            harm_definition: Path to the harm definition YAML file (for harm metrics).
+            harm_definition_version: Version of the harm definition YAML file (for harm metrics).
+
+        Returns:
+            ScorerMetrics subclass with computed metrics.
+        """
+
+    def _write_metrics_to_registry(
+        self,
+        *,
+        metrics: ScorerMetrics,
+        result_file_path: Path,
+    ) -> None:
+        """
+        Write metrics to the evaluation registry file.
+
+        Args:
+            metrics (ScorerMetrics): The computed metrics.
+            result_file_path (Path): The full path to the result file.
+        """
+        try:
+            eval_hash = self.scorer.get_identifier().eval_hash
+            if eval_hash is None:
+                logger.warning("Cannot write metrics: no eval_hash available for scorer")
+                return
+            replace_evaluation_results(
+                file_path=result_file_path,
+                scorer_identifier=self.scorer.get_identifier(),
+                eval_hash=eval_hash,
+                metrics=metrics,
+            )
+        except Exception as e:
+            logger.warning(f"Failed to write metrics to evaluation results: {e}")
+
+
+class HarmScorerEvaluator(ScorerEvaluator):
+    """
+    A class that evaluates a harm scorer against HumanLabeledDatasets of type HARM.
+    """
+
+    expected_metrics_type = MetricsType.HARM
+
+    def _validate_and_extract_data(
+        self,
+        labeled_dataset: HumanLabeledDataset,
+    ) -> tuple[list[Message], list[list[float]], list[str] | None]:
+        """
+        Validate harm dataset and extract evaluation data.
+
+        Args:
+            labeled_dataset: The dataset to validate and extract from.
+
+        Returns:
+            Tuple of (assistant_responses, human_scores_list, None).
+            objectives is None for harm scoring; the caller reads each objective from the
+            previous turn instead.
+
+        Raises:
+            ValueError: If dataset is not HARM type or has multiple harm categories.
+        """
+        if labeled_dataset.metrics_type != MetricsType.HARM:
+            raise ValueError("The HumanLabeledDataset must be of type HARM to evaluate a harm scorer.")
+
+        labeled_dataset.validate()
+
+        assistant_responses: list[Message] = []
+        human_scores_list: list[list[float]] = []
+
+        for entry in labeled_dataset.entries:
+            harm_entry = cast("HarmHumanLabeledEntry", entry)
+            for message in harm_entry.conversation:
+                self.scorer._memory.add_message_to_memory(request=message)
+                assistant_responses.append(message)
+            human_scores_list.append(harm_entry.human_scores)
+
+        return assistant_responses, human_scores_list, None
+
+    def _compute_metrics(
+        self,
+        *,
+        all_human_scores: np.ndarray,
+        all_model_scores: np.ndarray,
+        num_scorer_trials: int,
+        dataset_name: str | None = None,
+        dataset_version: str | None = None,
+        harm_category: str | None = None,
+        harm_definition: str | None = None,
+        harm_definition_version: str | None = None,
+    ) -> HarmScorerMetrics:
+        reliability_data = np.concatenate((all_human_scores, all_model_scores))
+        # Calculate the median of human scores for each response, which is considered the gold label
+        gold_scores = np.median(all_human_scores, axis=0)
+        median_model_scores = np.median(all_model_scores, axis=0)
+        diff = median_model_scores - gold_scores
+
+        # Zero out tiny floating point noise
+        diff[np.abs(diff) < 1e-10] = 0.0
+
+        abs_error = np.abs(diff)
+        # ttest_1samp on a zero-variance sample returns NaN and emits scipy
+        # divide-by-zero / catastrophic-cancellation warnings. Two degenerate cases
+        # warrant explicit handling (np.allclose tolerates the float noise that
+        # creeps in from `np.median(...)` differences):
+        #   - Perfect agreement (diff effectively all zeros): the null hypothesis
+        #     (mean diff = 0) is exactly satisfied, so report t=0.0, p=1.0.
+        #   - Systematic bias with no variance (constant non-zero diff): the t-test
+        #     is undefined; report NaN explicitly. MAE captures the bias magnitude.
+        if diff.size > 0 and np.allclose(diff, diff[0]):
+            if np.isclose(diff[0], 0.0):
+                t_statistic, p_value = 0.0, 1.0
+            else:
+                t_statistic, p_value = float("nan"), float("nan")
+        else:
+            t_statistic, p_value = cast("tuple[float, float]", ttest_1samp(diff, 0))
+
+        num_responses = all_human_scores.shape[1]
+        num_human_raters = all_human_scores.shape[0]
+
+        krippendorff_alpha_humans = None
+        if len(all_human_scores) > 1:
+            krippendorff_alpha_humans = krippendorff_alpha(
+                reliability_data=all_human_scores, level_of_measurement="ordinal"
+            )
+
+        krippendorff_alpha_model = None
+        if len(all_model_scores) > 1:
+            krippendorff_alpha_model = krippendorff_alpha(
+                reliability_data=all_model_scores, level_of_measurement="ordinal"
+            )
+
+        return HarmScorerMetrics(
+            num_responses=num_responses,
+            num_human_raters=num_human_raters,
+            mean_absolute_error=np.mean(abs_error),
+            mae_standard_error=np.std(abs_error) / np.sqrt(len(abs_error)),
+            t_statistic=t_statistic,
+            p_value=p_value,
+            krippendorff_alpha_combined=krippendorff_alpha(
+                reliability_data=reliability_data, level_of_measurement="ordinal"
+            ),
+            krippendorff_alpha_humans=krippendorff_alpha_humans,
+            krippendorff_alpha_model=krippendorff_alpha_model,
+            num_scorer_trials=num_scorer_trials,
+            dataset_name=dataset_name,
+            dataset_version=dataset_version,
+            harm_category=harm_category,
+            harm_definition=harm_definition,
+            harm_definition_version=harm_definition_version,
+        )
+
+
+class ObjectiveScorerEvaluator(ScorerEvaluator):
+    """
+    A class that evaluates an objective scorer against HumanLabeledDatasets of type OBJECTIVE.
+    """
+
+    expected_metrics_type = MetricsType.OBJECTIVE
+
+    def _validate_and_extract_data(
+        self,
+        labeled_dataset: HumanLabeledDataset,
+    ) -> tuple[list[Message], list[list[float]], list[str] | None]:
+        """
+        Validate objective dataset and extract evaluation data.
+
+        Args:
+            labeled_dataset: The dataset to validate and extract from.
+
+        Returns:
+            Tuple of (assistant_responses, human_scores_list, objectives).
+
+        Raises:
+            ValueError: If dataset is not OBJECTIVE type or contains invalid entries.
+        """
+        if labeled_dataset.metrics_type != MetricsType.OBJECTIVE:
+            raise ValueError("The HumanLabeledDataset must be of type OBJECTIVE to evaluate an objective scorer.")
+
+        labeled_dataset.validate()
+
+        assistant_responses: list[Message] = []
+        human_scores_list: list[list[float]] = []
+        objectives: list[str] = []
+
+        for entry in labeled_dataset.entries:
+            objective_entry = cast("ObjectiveHumanLabeledEntry", entry)
+            for message in objective_entry.conversation:
+                self.scorer._memory.add_message_to_memory(request=message)
+                assistant_responses.append(message)
+            human_scores_list.append([float(score) for score in objective_entry.human_scores])
+            objectives.append(objective_entry.objective)
+
+        return assistant_responses, human_scores_list, objectives
+
+    def _compute_metrics(
+        self,
+        *,
+        all_human_scores: np.ndarray,
+        all_model_scores: np.ndarray,
+        num_scorer_trials: int,
+        dataset_name: str | None = None,
+        dataset_version: str | None = None,
+        harm_category: str | None = None,
+        harm_definition: str | None = None,
+        harm_definition_version: str | None = None,
+    ) -> ObjectiveScorerMetrics:
+        # Calculate the majority vote of human scores for each response, which is considered the gold label.
+        # If the vote is split, the resulting gold score will be 0 (i.e. False). Same logic is applied to model trials.
+        gold_scores = np.round(np.median(all_human_scores, axis=0))
+        majority_model_scores = np.round(np.median(all_model_scores, axis=0))
+
+        true_positive = np.sum((gold_scores == 1) & (majority_model_scores == 1))
+        false_positive = np.sum((gold_scores == 0) & (majority_model_scores == 1))
+        true_negative = np.sum((gold_scores == 0) & (majority_model_scores == 0))
+        false_negative = np.sum((gold_scores == 1) & (majority_model_scores == 0))
+        accuracy = (true_positive + true_negative) / gold_scores.size
+        precision = true_positive / (true_positive + false_positive) if (true_positive + false_positive) > 0 else 0.0
+        recall = true_positive / (true_positive + false_negative) if (true_positive + false_negative) > 0 else 0.0
+        f1_score = 2 * precision * recall / (precision + recall) if (precision + recall) > 0 else 0.0
+
+        num_responses = all_human_scores.shape[1]
+        num_human_raters = all_human_scores.shape[0]
+
+        return ObjectiveScorerMetrics(
+            num_responses=num_responses,
+            num_human_raters=num_human_raters,
+            accuracy=accuracy,
+            accuracy_standard_error=np.sqrt(accuracy * (1 - accuracy) / gold_scores.size),
+            precision=precision,
+            recall=recall,
+            f1_score=f1_score,
+            num_scorer_trials=num_scorer_trials,
+            dataset_name=dataset_name,
+            dataset_version=dataset_version,
+        )

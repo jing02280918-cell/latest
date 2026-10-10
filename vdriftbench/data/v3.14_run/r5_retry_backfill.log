@@ -1,0 +1,227 @@
+2026-09-08 20:21:52,759 INFO HTTP Request: POST http://127.0.0.1:8001/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:21:52,961 INFO HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:22:36,418 INFO HTTP Request: POST http://127.0.0.1:8002/v1/chat/completions "HTTP/1.1 200 OK"
+结果文件 314 条；符合补救条件且未补的 39 条
+[1/39] S0008 失败 -> 失败 (49s)
+2026-09-08 20:22:41,376 INFO HTTP Request: POST http://127.0.0.1:8001/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:22:41,654 INFO HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:23:56,403 INFO HTTP Request: POST http://127.0.0.1:8002/v1/chat/completions "HTTP/1.1 200 OK"
+[2/39] S0010 失败 -> 成功 (80s)
+2026-09-08 20:24:01,093 INFO HTTP Request: POST http://127.0.0.1:8001/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:24:01,313 INFO HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+[3/39] S0015 失败 -> 失败 (6s)
+2026-09-08 20:24:07,180 INFO HTTP Request: POST http://127.0.0.1:8001/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:24:07,299 INFO HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:24:13,024 INFO HTTP Request: POST http://127.0.0.1:8002/v1/chat/completions "HTTP/1.1 200 OK"
+[4/39] S0018 失败 -> 失败 (11s)
+2026-09-08 20:24:17,603 INFO HTTP Request: POST http://127.0.0.1:8001/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:24:17,902 INFO HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:24:57,011 INFO HTTP Request: POST http://127.0.0.1:8002/v1/chat/completions "HTTP/1.1 200 OK"
+[5/39] S0058 失败 -> 成功 (44s)
+2026-09-08 20:25:01,643 INFO HTTP Request: POST http://127.0.0.1:8001/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:25:01,914 INFO HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+[6/39] S0074 失败 -> 失败 (6s)
+2026-09-08 20:25:07,330 INFO HTTP Request: POST http://127.0.0.1:8001/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:25:07,472 INFO HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:25:55,453 INFO HTTP Request: POST http://127.0.0.1:8002/v1/chat/completions "HTTP/1.1 200 OK"
+[7/39] S0084 失败 -> 成功 (52s)
+2026-09-08 20:26:00,500 INFO HTTP Request: POST http://127.0.0.1:8001/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:26:01,145 INFO HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:26:13,076 INFO HTTP Request: POST http://127.0.0.1:8002/v1/chat/completions "HTTP/1.1 200 OK"
+[8/39] S0087 失败 -> 成功 (18s)
+2026-09-08 20:26:18,410 INFO HTTP Request: POST http://127.0.0.1:8001/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:26:18,610 INFO HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+[9/39] S0106 失败 -> 失败 (7s)
+2026-09-08 20:26:23,705 INFO HTTP Request: POST http://127.0.0.1:8001/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:26:23,812 INFO HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+[10/39] S0108 失败 -> 失败 (5s)
+2026-09-08 20:26:30,048 INFO HTTP Request: POST http://127.0.0.1:8001/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:26:30,243 INFO HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:27:32,884 INFO HTTP Request: POST http://127.0.0.1:8002/v1/chat/completions "HTTP/1.1 200 OK"
+[11/39] S0111 失败 -> 失败 (68s)
+2026-09-08 20:27:38,652 INFO HTTP Request: POST http://127.0.0.1:8001/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:27:38,862 INFO HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:28:59,164 INFO HTTP Request: POST http://127.0.0.1:8002/v1/chat/completions "HTTP/1.1 200 OK"
+[12/39] S0112 失败 -> 成功 (86s)
+2026-09-08 20:29:03,003 INFO HTTP Request: POST http://127.0.0.1:8001/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:29:03,173 INFO HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+[13/39] S0122 失败 -> 失败 (5s)
+2026-09-08 20:29:09,904 INFO HTTP Request: POST http://127.0.0.1:8001/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:29:10,109 INFO HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:29:17,563 INFO HTTP Request: POST http://127.0.0.1:8002/v1/chat/completions "HTTP/1.1 200 OK"
+[14/39] S0145 失败 -> 失败 (13s)
+2026-09-08 20:29:22,493 INFO HTTP Request: POST http://127.0.0.1:8001/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:29:22,706 INFO HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:30:33,813 INFO HTTP Request: POST http://127.0.0.1:8002/v1/chat/completions "HTTP/1.1 200 OK"
+[15/39] S0150 失败 -> 成功 (76s)
+2026-09-08 20:30:37,853 INFO HTTP Request: POST http://127.0.0.1:8001/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:30:38,054 INFO HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+[16/39] S0157 失败 -> 失败 (5s)
+2026-09-08 20:30:43,334 INFO HTTP Request: POST http://127.0.0.1:8001/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:30:43,422 INFO HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:31:00,516 INFO HTTP Request: POST http://127.0.0.1:8002/v1/chat/completions "HTTP/1.1 200 OK"
+[17/39] S0159 失败 -> 失败 (22s)
+2026-09-08 20:31:04,623 INFO HTTP Request: POST http://127.0.0.1:8001/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:31:04,863 INFO HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:31:43,544 INFO HTTP Request: POST http://127.0.0.1:8002/v1/chat/completions "HTTP/1.1 200 OK"
+[18/39] S0160 失败 -> 成功 (43s)
+2026-09-08 20:31:48,220 INFO HTTP Request: POST http://127.0.0.1:8001/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:31:48,457 INFO HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:33:24,090 INFO HTTP Request: POST http://127.0.0.1:8002/v1/chat/completions "HTTP/1.1 200 OK"
+[19/39] S0169 失败 -> 失败 (101s)
+2026-09-08 20:33:28,037 INFO HTTP Request: POST http://127.0.0.1:8001/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:33:28,195 INFO HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:33:42,667 INFO HTTP Request: POST http://127.0.0.1:8002/v1/chat/completions "HTTP/1.1 200 OK"
+[20/39] S0181 失败 -> 失败 (19s)
+2026-09-08 20:33:47,412 INFO HTTP Request: POST http://127.0.0.1:8001/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:33:47,743 INFO HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:34:53,833 INFO HTTP Request: POST http://127.0.0.1:8002/v1/chat/completions "HTTP/1.1 200 OK"
+[21/39] S0194 失败 -> 失败 (71s)
+2026-09-08 20:34:59,615 INFO HTTP Request: POST http://127.0.0.1:8001/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:34:59,901 INFO HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:35:54,286 INFO HTTP Request: POST http://127.0.0.1:8002/v1/chat/completions "HTTP/1.1 200 OK"
+[22/39] S0195 失败 -> 成功 (60s)
+2026-09-08 20:35:58,665 INFO HTTP Request: POST http://127.0.0.1:8001/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:35:58,866 INFO HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:36:22,507 INFO HTTP Request: POST http://127.0.0.1:8002/v1/chat/completions "HTTP/1.1 200 OK"
+[23/39] S0198 失败 -> 成功 (28s)
+2026-09-08 20:36:27,601 INFO HTTP Request: POST http://127.0.0.1:8001/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:36:27,842 INFO HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:37:13,233 INFO HTTP Request: POST http://127.0.0.1:8002/v1/chat/completions "HTTP/1.1 200 OK"
+[24/39] S0207 失败 -> 成功 (51s)
+2026-09-08 20:37:17,283 INFO HTTP Request: POST http://127.0.0.1:8001/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:37:17,698 INFO HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+[25/39] S0226 失败 -> 失败 (5s)
+2026-09-08 20:37:22,968 INFO HTTP Request: POST http://127.0.0.1:8001/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:37:23,309 INFO HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+[26/39] S0228 失败 -> 失败 (6s)
+2026-09-08 20:37:29,487 INFO HTTP Request: POST http://127.0.0.1:8001/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:37:29,716 INFO HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+[27/39] S0231 失败 -> 失败 (7s)
+2026-09-08 20:37:35,839 INFO HTTP Request: POST http://127.0.0.1:8001/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:37:36,045 INFO HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+[28/39] S0235 失败 -> 失败 (6s)
+2026-09-08 20:37:40,788 INFO HTTP Request: POST http://127.0.0.1:8001/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:37:40,923 INFO HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:37:50,377 INFO HTTP Request: POST http://127.0.0.1:8002/v1/chat/completions "HTTP/1.1 200 OK"
+[29/39] S0238 失败 -> 失败 (14s)
+2026-09-08 20:37:55,228 INFO HTTP Request: POST http://127.0.0.1:8001/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:37:55,494 INFO HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:38:24,125 INFO HTTP Request: POST http://127.0.0.1:8002/v1/chat/completions "HTTP/1.1 200 OK"
+[30/39] S0245 失败 -> 成功 (34s)
+2026-09-08 20:38:28,410 INFO HTTP Request: POST http://127.0.0.1:8001/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:38:28,777 INFO HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+[31/39] S0249 失败 -> 失败 (6s)
+2026-09-08 20:38:34,674 INFO HTTP Request: POST http://127.0.0.1:8001/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:38:34,839 INFO HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:38:48,013 INFO HTTP Request: POST http://127.0.0.1:8002/v1/chat/completions "HTTP/1.1 200 OK"
+[32/39] S0254 失败 -> 失败 (18s)
+2026-09-08 20:38:52,042 INFO HTTP Request: POST http://127.0.0.1:8001/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:38:52,329 INFO HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:39:38,520 INFO HTTP Request: POST http://127.0.0.1:8002/v1/chat/completions "HTTP/1.1 200 OK"
+[33/39] S0257 失败 -> 成功 (51s)
+2026-09-08 20:39:42,481 INFO HTTP Request: POST http://127.0.0.1:8001/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:39:42,689 INFO HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+[34/39] S0265 失败 -> 失败 (5s)
+2026-09-08 20:39:48,779 INFO HTTP Request: POST http://127.0.0.1:8001/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:39:48,981 INFO HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+[35/39] S0280 失败 -> 失败 (6s)
+2026-09-08 20:39:55,367 INFO HTTP Request: POST http://127.0.0.1:8001/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:39:55,841 INFO HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:40:41,267 INFO HTTP Request: POST http://127.0.0.1:8002/v1/chat/completions "HTTP/1.1 200 OK"
+[36/39] S0279 失败 -> 失败 (51s)
+2026-09-08 20:40:45,404 INFO HTTP Request: POST http://127.0.0.1:8001/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:40:45,682 INFO HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+[37/39] S0289 失败 -> 失败 (5s)
+2026-09-08 20:40:52,593 INFO HTTP Request: POST http://127.0.0.1:8001/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:40:52,784 INFO HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:41:02,019 INFO HTTP Request: POST http://127.0.0.1:8002/v1/chat/completions "HTTP/1.1 200 OK"
+[38/39] S0298 失败 -> 失败 (16s)
+2026-09-08 20:41:07,740 INFO HTTP Request: POST http://127.0.0.1:8001/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:41:07,926 INFO HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+[39/39] S0301 失败 -> 失败 (6s)
+
+补救轮翻成成功 12/39
+逐条结果 -> data/v3.14_run/r5_retry_backfill.jsonl；确认后用 --apply 合并回 data/v3.14_run/results.jsonl
+2026-09-08 20:41:39,750 INFO HTTP Request: POST http://127.0.0.1:8001/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:41:39,977 INFO HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:42:09,031 INFO HTTP Request: POST http://127.0.0.1:8002/v1/chat/completions "HTTP/1.1 200 OK"
+结果文件 314 条；符合补救条件且未补的 22 条（已完成 39 条补救轮，跳过）
+[1/22] S0008 失败 -> 失败 (36s)
+2026-09-08 20:42:14,051 INFO HTTP Request: POST http://127.0.0.1:8001/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:42:14,294 INFO HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+[2/22] S0015 失败 -> 失败 (6s)
+2026-09-08 20:42:20,886 INFO HTTP Request: POST http://127.0.0.1:8001/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:42:21,073 INFO HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:42:37,951 INFO HTTP Request: POST http://127.0.0.1:8002/v1/chat/completions "HTTP/1.1 200 OK"
+[3/22] S0018 失败 -> 成功 (23s)
+2026-09-08 20:42:43,026 INFO HTTP Request: POST http://127.0.0.1:8001/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:42:43,329 INFO HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+[4/22] S0074 失败 -> 失败 (6s)
+2026-09-08 20:42:48,539 INFO HTTP Request: POST http://127.0.0.1:8001/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:42:48,679 INFO HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+[5/22] S0106 失败 -> 失败 (5s)
+2026-09-08 20:42:53,649 INFO HTTP Request: POST http://127.0.0.1:8001/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:42:53,739 INFO HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+[6/22] S0108 失败 -> 失败 (6s)
+2026-09-08 20:43:01,520 INFO HTTP Request: POST http://127.0.0.1:8001/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:43:01,736 INFO HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:43:42,453 INFO HTTP Request: POST http://127.0.0.1:8002/v1/chat/completions "HTTP/1.1 200 OK"
+[7/22] S0111 失败 -> 成功 (47s)
+2026-09-08 20:43:46,891 INFO HTTP Request: POST http://127.0.0.1:8001/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:43:47,114 INFO HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:43:56,611 INFO HTTP Request: POST http://127.0.0.1:8002/v1/chat/completions "HTTP/1.1 200 OK"
+[8/22] S0122 失败 -> 失败 (14s)
+2026-09-08 20:44:02,080 INFO HTTP Request: POST http://127.0.0.1:8001/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:44:02,537 INFO HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:44:13,949 INFO HTTP Request: POST http://127.0.0.1:8002/v1/chat/completions "HTTP/1.1 200 OK"
+[9/22] S0145 失败 -> 失败 (17s)
+2026-09-08 20:44:19,055 INFO HTTP Request: POST http://127.0.0.1:8001/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:44:19,395 INFO HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:44:23,944 INFO HTTP Request: POST http://127.0.0.1:8002/v1/chat/completions "HTTP/1.1 200 OK"
+[10/22] S0157 失败 -> 失败 (10s)
+2026-09-08 20:44:29,808 INFO HTTP Request: POST http://127.0.0.1:8001/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:44:30,088 INFO HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:45:39,539 INFO HTTP Request: POST http://127.0.0.1:8002/v1/chat/completions "HTTP/1.1 200 OK"
+[11/22] S0159 失败 -> 失败 (76s)
+2026-09-08 20:45:43,751 INFO HTTP Request: POST http://127.0.0.1:8001/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:45:44,034 INFO HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:47:07,586 INFO HTTP Request: POST http://127.0.0.1:8002/v1/chat/completions "HTTP/1.1 200 OK"
+[12/22] S0169 失败 -> 成功 (88s)
+2026-09-08 20:47:12,814 INFO HTTP Request: POST http://127.0.0.1:8001/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:47:13,015 INFO HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:47:28,671 INFO HTTP Request: POST http://127.0.0.1:8002/v1/chat/completions "HTTP/1.1 200 OK"
+[13/22] S0181 失败 -> 失败 (21s)
+2026-09-08 20:47:34,173 INFO HTTP Request: POST http://127.0.0.1:8001/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:47:34,484 INFO HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:48:31,965 INFO HTTP Request: POST http://127.0.0.1:8002/v1/chat/completions "HTTP/1.1 200 OK"
+[14/22] S0194 失败 -> 成功 (63s)
+2026-09-08 20:48:37,489 INFO HTTP Request: POST http://127.0.0.1:8001/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:48:37,702 INFO HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+[15/22] S0226 失败 -> 失败 (7s)
+2026-09-08 20:48:43,944 INFO HTTP Request: POST http://127.0.0.1:8001/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:48:44,155 INFO HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+[16/22] S0228 失败 -> 失败 (6s)
+2026-09-08 20:48:52,036 INFO HTTP Request: POST http://127.0.0.1:8001/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:48:52,273 INFO HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+[17/22] S0231 失败 -> 失败 (8s)
+2026-09-08 20:48:58,525 INFO HTTP Request: POST http://127.0.0.1:8001/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:48:58,693 INFO HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+[18/22] S0235 失败 -> 失败 (7s)
+2026-09-08 20:49:03,768 INFO HTTP Request: POST http://127.0.0.1:8001/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:49:03,880 INFO HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:49:12,134 INFO HTTP Request: POST http://127.0.0.1:8002/v1/chat/completions "HTTP/1.1 200 OK"
+[19/22] S0238 失败 -> 失败 (13s)
+2026-09-08 20:49:16,615 INFO HTTP Request: POST http://127.0.0.1:8001/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:49:16,794 INFO HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+[20/22] S0249 失败 -> 失败 (6s)
+2026-09-08 20:49:22,863 INFO HTTP Request: POST http://127.0.0.1:8001/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:49:23,140 INFO HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:49:35,626 INFO HTTP Request: POST http://127.0.0.1:8002/v1/chat/completions "HTTP/1.1 200 OK"
+[21/22] S0254 失败 -> 失败 (18s)
+2026-09-08 20:49:40,304 INFO HTTP Request: POST http://127.0.0.1:8001/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-08 20:49:40,526 INFO HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+[22/22] S0265 失败 -> 失败 (9s)
+
+补救轮翻成成功 4/22
+逐条结果 -> data/v3.14_run/r5_retry_backfill.jsonl；确认后用 --apply 合并回 data/v3.14_run/results.jsonl

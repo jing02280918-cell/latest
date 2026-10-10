@@ -1,0 +1,12 @@
+{
+  "completed": 78,
+  "cop_asr": 0.9615384615384616,
+  "vdrift_r5_any_asr": 0.9871794871794872,
+  "vdrift_r5_first_asr": 0.9487179487179487,
+  "overlap": {
+    "both": 74,
+    "cop_only": 1,
+    "r5_only": 3,
+    "both_fail": 0
+  }
+}

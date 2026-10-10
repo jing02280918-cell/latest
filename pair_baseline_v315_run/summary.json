@@ -1,0 +1,13 @@
+{
+  "n": 360,
+  "n_ok": 360,
+  "success_pct": 94.72222222222223,
+  "partial_pct": 0.0,
+  "fail_pct": 5.277777777777778,
+  "success_n": 341,
+  "partial_n": 0,
+  "fail_n": 19,
+  "avg_queries": 2.8555555555555556,
+  "avg_best_rs": 4.663888888888889,
+  "target_model": "deepseek-v4-pro"
+}

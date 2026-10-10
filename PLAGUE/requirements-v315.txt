@@ -1,0 +1,13 @@
+# Minimal deps for PLAGUE on V-DriftBench v3.15 (same stack as PAIR / CoP).
+# Do NOT pip install -r requirements.txt here — it can pin/upgrade packages
+# and interfere with v3.15 / PAIR runs in /hy-tmp/venv.
+#
+# v3.15 path reuses vdriftbench + shared /hy-tmp/venv. Runtime needs only:
+#   openai, pandas, python-dotenv, numpy, tqdm
+#   (+ vdriftbench on PYTHONPATH, not pip)
+#
+# NOT needed for v3.15 (lazy-imported or disabled):
+#   together, google-genai, anthropic, scikit-learn, datasets
+#
+# Install only if import fails — run before experiments:
+#   /hy-tmp/venv/bin/python scripts/ensure_v315_deps.py

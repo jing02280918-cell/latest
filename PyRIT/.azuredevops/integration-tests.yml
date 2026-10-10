@@ -1,0 +1,36 @@
+
+# Builds the pyrit environment and runs integration tests
+
+trigger: none
+
+schedules:
+- cron: "0 */3 * * *"  # Every 3 hours
+  displayName: Integration Tests Every 3 Hours
+  branches:
+    include:
+      - main
+  always: true
+
+jobs:
+- template: test-job-template.yml
+  parameters:
+    jobName: IntegrationTests
+    jobDisplayName: "Builds the pyrit environment and runs integration tests"
+    testAzureSubscription: 'integration-test-service-connection'
+    newDir: integration_test_directory
+    testsFolder: integration
+    makeTarget: integration-test
+    # Run each group in a fresh pytest process to release memory between groups.
+    testBatches:
+      - tests/integration/ai_recruiter
+      - tests/integration/cli
+      - tests/integration/converter
+      - tests/integration/datasets
+      - tests/integration/embeddings
+      - tests/integration/executor
+      - tests/integration/executors
+      - tests/integration/memory
+      - tests/integration/message_normalizer
+      - tests/integration/scenarios
+      - tests/integration/score
+      - tests/integration/targets

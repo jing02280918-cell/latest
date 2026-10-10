@@ -1,0 +1,10 @@
+{
+  "frozen_sample_ids": [
+    "S0047",
+    "S0054",
+    "S0066",
+    "S0080"
+  ],
+  "note": "S0066/S0080 copied from untouched first-run CSVs. S0047/S0054 restored from analysis_r5_partial.json metadata after rerun-failed overwrite.",
+  "analysis_snapshot": "/root/cop/outputs/v315/analysis_r5_partial.json"
+}

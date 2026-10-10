@@ -1,0 +1,456 @@
+[2026-10-08 20:08:33] === eval357 R5-only ablation (n=357, workers=2) pid 888359 ===
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights: 100%|██████████| 391/391 [00:00<00:00, 26371.21it/s]
+[0/v315_r5_only] 1/357 S0000
+[0/v315_r5_only] 2/357 S0001
+[0/v315_r5_only] 3/357 S0002
+[0/v315_r5_only] 4/357 S0003
+[0/v315_r5_only] 5/357 S0004
+[0/v315_r5_only] 6/357 S0005
+[0/v315_r5_only] 7/357 S0006
+[0/v315_r5_only] 8/357 S0008
+[0/v315_r5_only] 9/357 S0007
+[0/v315_r5_only] 10/357 S0010
+[0/v315_r5_only] 11/357 S0009
+[0/v315_r5_only] 12/357 S0012
+[0/v315_r5_only] 13/357 S0011
+[0/v315_r5_only] 14/357 S0013
+[0/v315_r5_only] 15/357 S0014
+[0/v315_r5_only] 16/357 S0015
+[0/v315_r5_only] 17/357 S0017
+[0/v315_r5_only] 18/357 S0016
+[0/v315_r5_only] 19/357 S0018
+[0/v315_r5_only] 20/357 S0019
+[0/v315_r5_only] 21/357 S0020
+[0/v315_r5_only] 22/357 S0022
+[0/v315_r5_only] 23/357 S0021
+[0/v315_r5_only] 24/357 S0024
+[0/v315_r5_only] 25/357 S0023
+[0/v315_r5_only] 26/357 S0025
+[0/v315_r5_only] 27/357 S0026
+[0/v315_r5_only] 28/357 S0027
+[0/v315_r5_only] 29/357 S0028
+[0/v315_r5_only] 30/357 S0029
+[0/v315_r5_only] 31/357 S0030
+[0/v315_r5_only] 32/357 S0031
+[0/v315_r5_only] 33/357 S0032
+[0/v315_r5_only] 34/357 S0033
+[0/v315_r5_only] 35/357 S0034
+[0/v315_r5_only] 36/357 S0035
+[0/v315_r5_only] 37/357 S0036
+[0/v315_r5_only] 38/357 S0037
+[0/v315_r5_only] 39/357 S0039
+[0/v315_r5_only] 40/357 S0038
+[0/v315_r5_only] 41/357 S0040
+[0/v315_r5_only] 42/357 S0041
+[0/v315_r5_only] 43/357 S0042
+[0/v315_r5_only] 44/357 S0043
+[0/v315_r5_only] 45/357 S0044
+[0/v315_r5_only] 46/357 S0045
+[0/v315_r5_only] 47/357 S0046
+[0/v315_r5_only] 48/357 S0047
+[0/v315_r5_only] 49/357 S0048
+[0/v315_r5_only] 50/357 S0049
+[0/v315_r5_only] 51/357 S0050
+[0/v315_r5_only] 52/357 S0051
+[0/v315_r5_only] 53/357 S0052
+[0/v315_r5_only] 54/357 S0054
+[0/v315_r5_only] 55/357 S0053
+[0/v315_r5_only] 56/357 S0055
+[0/v315_r5_only] 57/357 S0056
+[0/v315_r5_only] 58/357 S0057
+[0/v315_r5_only] 59/357 S0058
+[0/v315_r5_only] 60/357 S0059
+[0/v315_r5_only] 61/357 S0060
+[0/v315_r5_only] 62/357 S0061
+[0/v315_r5_only] 63/357 S0062
+[0/v315_r5_only] 64/357 S0063
+[0/v315_r5_only] 65/357 S0064
+[0/v315_r5_only] 66/357 S0066
+[0/v315_r5_only] 67/357 S0065
+[0/v315_r5_only] 68/357 S0068
+[0/v315_r5_only] 69/357 S0067
+[0/v315_r5_only] 70/357 S0070
+[0/v315_r5_only] 71/357 S0069
+[0/v315_r5_only] 72/357 S0071
+[0/v315_r5_only] 73/357 S0072
+[0/v315_r5_only] 74/357 S0073
+[0/v315_r5_only] 75/357 S0074
+[0/v315_r5_only] 76/357 S0076
+[0/v315_r5_only] 77/357 S0075
+[0/v315_r5_only] 78/357 S0077
+[0/v315_r5_only] 79/357 S0078
+[0/v315_r5_only] 80/357 S0080
+[0/v315_r5_only] 81/357 S0079
+[0/v315_r5_only] 82/357 S0081
+[0/v315_r5_only] 83/357 S0082
+[0/v315_r5_only] 84/357 S0083
+[0/v315_r5_only] 85/357 S0084
+[0/v315_r5_only] 86/357 S0085
+[0/v315_r5_only] 87/357 S0086
+[0/v315_r5_only] 88/357 S0087
+[0/v315_r5_only] 89/357 S0088
+[0/v315_r5_only] 90/357 S0090
+[0/v315_r5_only] 91/357 S0089
+[0/v315_r5_only] 92/357 S0092
+[0/v315_r5_only] 93/357 S0091
+[0/v315_r5_only] 94/357 S0093
+[0/v315_r5_only] 95/357 S0094
+[0/v315_r5_only] 96/357 S0095
+[0/v315_r5_only] 97/357 S0096
+[0/v315_r5_only] 98/357 S0097
+[0/v315_r5_only] 99/357 S0098
+[0/v315_r5_only] 100/357 S0099
+[2026-10-09 09:38:57] === eval357 R5-only RESUME from 100/357 (workers=2) pid 1254596 ===
+[2026-10-09 09:38:57] === eval357 R5-only RESUME from 100/357 (workers=2) pid 1254596 ===
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights: 100%|██████████| 391/391 [00:00<00:00, 27183.82it/s]
+[W1009 09:39:22.079861810 CUDACachingAllocator.cpp:3933] memory allocation failed with OOM on device 0 while trying to allocate 16777216 bytes (free: 13565952, total: 50864390144).
+[W1009 09:39:22.080045872 CUDACachingAllocator.cpp:3933] memory allocation failed with OOM on device 0 while trying to allocate 16777216 bytes (free: 13565952, total: 50864390144).
+Traceback (most recent call last):
+  File "/root/vdriftbench/scripts/run_ablation.py", line 451, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/root/vdriftbench/scripts/run_ablation.py", line 428, in main
+    rows, report = run_arm(samples, base, name, seed, out_dir, args)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/vdriftbench/scripts/run_ablation.py", line 263, in run_arm
+    embed = build_embedding_client(config.embedding_model, mock=args.mock, device=args.device)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/vdriftbench/vdriftbench/embedding_client.py", line 62, in build_embedding_client
+    return SentenceTransformerEmbeddingClient(model_name=model_name, device=device)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/vdriftbench/vdriftbench/embedding_client.py", line 31, in __init__
+    self._model = SentenceTransformer(model_name, device=device)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/hy-tmp/venv/lib/python3.11/site-packages/sentence_transformers/util/decorators.py", line 46, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/hy-tmp/venv/lib/python3.11/site-packages/sentence_transformers/sentence_transformer/model.py", line 194, in __init__
+    super().__init__(
+  File "/hy-tmp/venv/lib/python3.11/site-packages/sentence_transformers/base/model.py", line 275, in __init__
+    self.to(device)
+  File "/hy-tmp/venv/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1383, in to
+    return self._apply(convert)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/hy-tmp/venv/lib/python3.11/site-packages/torch/nn/modules/module.py", line 933, in _apply
+    module._apply(fn)
+  File "/hy-tmp/venv/lib/python3.11/site-packages/torch/nn/modules/module.py", line 933, in _apply
+    module._apply(fn)
+  File "/hy-tmp/venv/lib/python3.11/site-packages/torch/nn/modules/module.py", line 933, in _apply
+    module._apply(fn)
+  [Previous line repeated 4 more times]
+  File "/hy-tmp/venv/lib/python3.11/site-packages/torch/nn/modules/module.py", line 964, in _apply
+    param_applied = fn(param)
+                    ^^^^^^^^^
+  File "/hy-tmp/venv/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1369, in convert
+    return t.to(
+           ^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 16.00 MiB. GPU 0 has a total capacity of 47.37 GiB of which 12.94 MiB is free. Process 3190435 has 22.12 GiB memory in use. Process 3191653 has 20.91 GiB memory in use. Process 2668904 has 2.91 GiB memory in use. Process 920472 has 1.40 GiB memory in use. Of the allocated memory 1.02 GiB is allocated by PyTorch, and 9.25 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)
+[2026-10-09 09:39:52] === eval357 R5-only RESUME from 100/357 (workers=1) pid 1255384 ===
+[2026-10-09 09:39:52] === eval357 R5-only RESUME from 100/357 (workers=1) pid 1255384 ===
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights: 100%|██████████| 391/391 [00:00<00:00, 26023.47it/s]
+[W1009 09:40:18.172011341 CUDACachingAllocator.cpp:3933] memory allocation failed with OOM on device 0 while trying to allocate 16777216 bytes (free: 13565952, total: 50864390144).
+[W1009 09:40:18.172192598 CUDACachingAllocator.cpp:3933] memory allocation failed with OOM on device 0 while trying to allocate 16777216 bytes (free: 13565952, total: 50864390144).
+Traceback (most recent call last):
+  File "/root/vdriftbench/scripts/run_ablation.py", line 451, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/root/vdriftbench/scripts/run_ablation.py", line 428, in main
+    rows, report = run_arm(samples, base, name, seed, out_dir, args)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/vdriftbench/scripts/run_ablation.py", line 263, in run_arm
+    embed = build_embedding_client(config.embedding_model, mock=args.mock, device=args.device)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/vdriftbench/vdriftbench/embedding_client.py", line 62, in build_embedding_client
+    return SentenceTransformerEmbeddingClient(model_name=model_name, device=device)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/vdriftbench/vdriftbench/embedding_client.py", line 31, in __init__
+    self._model = SentenceTransformer(model_name, device=device)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/hy-tmp/venv/lib/python3.11/site-packages/sentence_transformers/util/decorators.py", line 46, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/hy-tmp/venv/lib/python3.11/site-packages/sentence_transformers/sentence_transformer/model.py", line 194, in __init__
+    super().__init__(
+  File "/hy-tmp/venv/lib/python3.11/site-packages/sentence_transformers/base/model.py", line 275, in __init__
+    self.to(device)
+  File "/hy-tmp/venv/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1383, in to
+    return self._apply(convert)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/hy-tmp/venv/lib/python3.11/site-packages/torch/nn/modules/module.py", line 933, in _apply
+    module._apply(fn)
+  File "/hy-tmp/venv/lib/python3.11/site-packages/torch/nn/modules/module.py", line 933, in _apply
+    module._apply(fn)
+  File "/hy-tmp/venv/lib/python3.11/site-packages/torch/nn/modules/module.py", line 933, in _apply
+    module._apply(fn)
+  [Previous line repeated 4 more times]
+  File "/hy-tmp/venv/lib/python3.11/site-packages/torch/nn/modules/module.py", line 964, in _apply
+    param_applied = fn(param)
+                    ^^^^^^^^^
+  File "/hy-tmp/venv/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1369, in convert
+    return t.to(
+           ^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 16.00 MiB. GPU 0 has a total capacity of 47.37 GiB of which 12.94 MiB is free. Process 3190435 has 22.12 GiB memory in use. Process 3191653 has 20.91 GiB memory in use. Process 2668904 has 2.91 GiB memory in use. Process 922990 has 1.40 GiB memory in use. Of the allocated memory 1.02 GiB is allocated by PyTorch, and 9.25 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)
+bash: /root/vdriftbench/scripts/deploy/run_r5_only_after_no_target_history.sh: No such file or directory
+[2026-10-09 09:40:50] waiting for no_target_history (pid=918916, n=316/357) before R5-only resume
+[2026-10-09 09:42:50] waiting for no_target_history (pid=918916, n=318/357) before R5-only resume
+[2026-10-09 11:37:03] resume R5-only from 100/357
+[2026-10-09 11:37:03] === eval357 R5-only ablation (n=357, workers=2) pid 1301101 ===
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights: 100%|██████████| 391/391 [00:00<00:00, 26897.59it/s]
+[0/v315_r5_only] 101/357 S0100
+[0/v315_r5_only] 102/357 S0101
+[0/v315_r5_only] 103/357 S0102
+[0/v315_r5_only] 104/357 S0103
+[0/v315_r5_only] 105/357 S0104
+[0/v315_r5_only] 106/357 S0105
+[0/v315_r5_only] 107/357 S0106
+[0/v315_r5_only] 108/357 S0107
+[0/v315_r5_only] 109/357 S0108
+[0/v315_r5_only] 110/357 S0109
+[0/v315_r5_only] 111/357 S0110
+[0/v315_r5_only] 112/357 S0111
+[0/v315_r5_only] 113/357 S0112
+[0/v315_r5_only] 114/357 S0113
+[0/v315_r5_only] 115/357 S0114
+[0/v315_r5_only] 116/357 S0115
+[0/v315_r5_only] 117/357 S0116
+[0/v315_r5_only] 118/357 S0118
+[0/v315_r5_only] 119/357 S0117
+[0/v315_r5_only] 120/357 S0120
+[0/v315_r5_only] 121/357 S0119
+[0/v315_r5_only] 122/357 S0122
+[0/v315_r5_only] 123/357 S0121
+[0/v315_r5_only] 124/357 S0124
+[0/v315_r5_only] 125/357 S0123
+[0/v315_r5_only] 126/357 S0125
+[0/v315_r5_only] 127/357 S0126
+[0/v315_r5_only] 128/357 S0127
+[0/v315_r5_only] 129/357 S0128
+[0/v315_r5_only] 130/357 S0129
+[0/v315_r5_only] 131/357 S0130
+[0/v315_r5_only] 132/357 S0131
+[0/v315_r5_only] 133/357 S0132
+[0/v315_r5_only] 134/357 S0133
+[0/v315_r5_only] 135/357 S0134
+[0/v315_r5_only] 136/357 S0135
+[0/v315_r5_only] 137/357 S0136
+[0/v315_r5_only] 138/357 S0138
+[0/v315_r5_only] 139/357 S0137
+[0/v315_r5_only] 140/357 S0139
+[0/v315_r5_only] 141/357 S0140
+[0/v315_r5_only] 142/357 S0142
+[0/v315_r5_only] 143/357 S0141
+[0/v315_r5_only] 144/357 S0143
+[0/v315_r5_only] 145/357 S0144
+[0/v315_r5_only] 146/357 S0145
+[0/v315_r5_only] 147/357 S0146
+[0/v315_r5_only] 148/357 S0147
+[0/v315_r5_only] 149/357 S0148
+[0/v315_r5_only] 150/357 S0149
+[0/v315_r5_only] 151/357 S0151
+[0/v315_r5_only] 152/357 S0150
+[0/v315_r5_only] 153/357 S0152
+[0/v315_r5_only] 154/357 S0153
+[0/v315_r5_only] 155/357 S0154
+[0/v315_r5_only] 156/357 S0156
+[0/v315_r5_only] 157/357 S0155
+[0/v315_r5_only] 158/357 S0157
+[0/v315_r5_only] 159/357 S0158
+[0/v315_r5_only] 160/357 S0159
+[0/v315_r5_only] 161/357 S0160
+[0/v315_r5_only] 162/357 S0161
+[0/v315_r5_only] 163/357 S0163
+[0/v315_r5_only] 164/357 S0162
+[0/v315_r5_only] 165/357 S0164
+[0/v315_r5_only] 166/357 S0165
+[0/v315_r5_only] 167/357 S0167
+[0/v315_r5_only] 168/357 S0166
+[0/v315_r5_only] 169/357 S0168
+[0/v315_r5_only] 170/357 S0169
+[0/v315_r5_only] 171/357 S0170
+[0/v315_r5_only] 172/357 S0171
+[0/v315_r5_only] 173/357 S0172
+[0/v315_r5_only] 174/357 S0173
+[0/v315_r5_only] 175/357 S0175
+[0/v315_r5_only] 176/357 S0174
+[0/v315_r5_only] 177/357 S0177
+[0/v315_r5_only] 178/357 S0176
+[0/v315_r5_only] 179/357 S0179
+[0/v315_r5_only] 180/357 S0178
+[0/v315_r5_only] 181/357 S0181
+[0/v315_r5_only] 182/357 S0180
+[0/v315_r5_only] 183/357 S0182
+[0/v315_r5_only] 184/357 S0183
+[0/v315_r5_only] 185/357 S0184
+[0/v315_r5_only] 186/357 S0185
+[0/v315_r5_only] 187/357 S0187
+[0/v315_r5_only] 188/357 S0186
+[0/v315_r5_only] 189/357 S0188
+[0/v315_r5_only] 190/357 S0189
+[0/v315_r5_only] 191/357 S0190
+[0/v315_r5_only] 192/357 S0191
+[0/v315_r5_only] 193/357 S0192
+[0/v315_r5_only] 194/357 S0193
+[0/v315_r5_only] 195/357 S0194
+[0/v315_r5_only] 196/357 S0195
+[0/v315_r5_only] 197/357 S0197
+[0/v315_r5_only] 198/357 S0196
+[0/v315_r5_only] 199/357 S0198
+[0/v315_r5_only] 200/357 S0200
+[0/v315_r5_only] 201/357 S0199
+[0/v315_r5_only] 202/357 S0201
+[0/v315_r5_only] 203/357 S0202
+[0/v315_r5_only] 204/357 S0204
+[0/v315_r5_only] 205/357 S0203
+[0/v315_r5_only] 206/357 S0205
+[0/v315_r5_only] 207/357 S0206
+[0/v315_r5_only] 208/357 S0207
+[0/v315_r5_only] 209/357 S0208
+[0/v315_r5_only] 210/357 S0209
+[0/v315_r5_only] 211/357 S0210
+[0/v315_r5_only] 212/357 S0211
+[0/v315_r5_only] 213/357 S0212
+[0/v315_r5_only] 214/357 S0213
+[0/v315_r5_only] 215/357 S0214
+[0/v315_r5_only] 216/357 S0215
+[0/v315_r5_only] 217/357 S0217
+[0/v315_r5_only] 218/357 S0216
+[0/v315_r5_only] 219/357 S0218
+[0/v315_r5_only] 220/357 S0219
+[0/v315_r5_only] 221/357 S0220
+[0/v315_r5_only] 222/357 S0221
+[0/v315_r5_only] 223/357 S0222
+[0/v315_r5_only] 224/357 S0223
+[0/v315_r5_only] 225/357 S0224
+[0/v315_r5_only] 226/357 S0225
+[0/v315_r5_only] 227/357 S0226
+[0/v315_r5_only] 228/357 S0227
+[0/v315_r5_only] 229/357 S0228
+[0/v315_r5_only] 230/357 S0229
+[0/v315_r5_only] 231/357 S0230
+[0/v315_r5_only] 232/357 S0231
+[0/v315_r5_only] 233/357 S0232
+[0/v315_r5_only] 234/357 S0234
+[0/v315_r5_only] 235/357 S0233
+[0/v315_r5_only] 236/357 S0235
+[0/v315_r5_only] 237/357 S0236
+[0/v315_r5_only] 238/357 S0237
+[0/v315_r5_only] 239/357 S0238
+[0/v315_r5_only] 240/357 S0239
+[0/v315_r5_only] 241/357 S0241
+[0/v315_r5_only] 242/357 S0240
+[0/v315_r5_only] 243/357 S0242
+[0/v315_r5_only] 244/357 S0243
+[0/v315_r5_only] 245/357 S0244
+[0/v315_r5_only] 246/357 S0245
+[0/v315_r5_only] 247/357 S0246
+[0/v315_r5_only] 248/357 S0248
+[0/v315_r5_only] 249/357 S0247
+[0/v315_r5_only] 250/357 S0249
+[0/v315_r5_only] 251/357 S0250
+[0/v315_r5_only] 252/357 S0251
+[0/v315_r5_only] 253/357 S0252
+[0/v315_r5_only] 254/357 S0253
+[0/v315_r5_only] 255/357 S0254
+[0/v315_r5_only] 256/357 S0255
+[0/v315_r5_only] 257/357 S0256
+[0/v315_r5_only] 258/357 S0257
+[0/v315_r5_only] 259/357 S0258
+[0/v315_r5_only] 260/357 S0259
+[0/v315_r5_only] 261/357 S0260
+[0/v315_r5_only] 262/357 S0261
+[0/v315_r5_only] 263/357 S0262
+[0/v315_r5_only] 264/357 S0263
+[0/v315_r5_only] 265/357 S0264
+[0/v315_r5_only] 266/357 S0265
+[0/v315_r5_only] 267/357 S0267
+[0/v315_r5_only] 268/357 S0268
+[0/v315_r5_only] 269/357 S0266
+[0/v315_r5_only] 270/357 S0270
+[0/v315_r5_only] 271/357 S0269
+[0/v315_r5_only] 272/357 S0271
+[0/v315_r5_only] 273/357 S0272
+[0/v315_r5_only] 274/357 S0274
+[0/v315_r5_only] 275/357 S0275
+[0/v315_r5_only] 276/357 S0273
+[0/v315_r5_only] 277/357 S0277
+[0/v315_r5_only] 278/357 S0276
+[0/v315_r5_only] 279/357 S0278
+[0/v315_r5_only] 280/357 S0279
+[0/v315_r5_only] 281/357 S0280
+[0/v315_r5_only] 282/357 S0281
+[0/v315_r5_only] 283/357 S0282
+[0/v315_r5_only] 284/357 S0283
+[0/v315_r5_only] 285/357 S0285
+[0/v315_r5_only] 286/357 S0284
+[0/v315_r5_only] 287/357 S0286
+[0/v315_r5_only] 288/357 S0287
+[0/v315_r5_only] 289/357 S0288
+[0/v315_r5_only] 290/357 S0290
+[0/v315_r5_only] 291/357 S0291
+[0/v315_r5_only] 292/357 S0292
+[0/v315_r5_only] 293/357 S0293
+[0/v315_r5_only] 294/357 S0294
+[0/v315_r5_only] 295/357 S0295
+[0/v315_r5_only] 296/357 S0296
+[0/v315_r5_only] 297/357 S0297
+[0/v315_r5_only] 298/357 S0298
+[0/v315_r5_only] 299/357 S0300
+[0/v315_r5_only] 300/357 S0299
+[0/v315_r5_only] 301/357 S0301
+[0/v315_r5_only] 302/357 S0302
+[0/v315_r5_only] 303/357 S0303
+[0/v315_r5_only] 304/357 S0304
+[0/v315_r5_only] 305/357 S0306
+[0/v315_r5_only] 306/357 S0305
+[0/v315_r5_only] 307/357 S0307
+[0/v315_r5_only] 308/357 S0308
+[0/v315_r5_only] 309/357 S0309
+[0/v315_r5_only] 310/357 S0310
+[0/v315_r5_only] 311/357 S0312
+[0/v315_r5_only] 312/357 S0311
+[0/v315_r5_only] 313/357 S0313
+[0/v315_r5_only] 314/357 S0314
+[0/v315_r5_only] 315/357 S0315
+[0/v315_r5_only] 316/357 S0316
+[0/v315_r5_only] 317/357 S0317
+[0/v315_r5_only] 318/357 S0318
+[0/v315_r5_only] 319/357 S0319
+[0/v315_r5_only] 320/357 S0320
+[0/v315_r5_only] 321/357 S0322
+[0/v315_r5_only] 322/357 S0321
+[0/v315_r5_only] 323/357 S0323
+[0/v315_r5_only] 324/357 S0324
+[0/v315_r5_only] 325/357 S0327
+[0/v315_r5_only] 326/357 S0326
+[0/v315_r5_only] 327/357 S0329
+[0/v315_r5_only] 328/357 S0328
+[0/v315_r5_only] 329/357 S0330
+[0/v315_r5_only] 330/357 S0331
+[0/v315_r5_only] 331/357 S0332
+[0/v315_r5_only] 332/357 S0333
+[0/v315_r5_only] 333/357 S0334
+[0/v315_r5_only] 334/357 S0335
+[0/v315_r5_only] 335/357 S0336
+[0/v315_r5_only] 336/357 S0337
+[0/v315_r5_only] 337/357 S0338
+[0/v315_r5_only] 338/357 S0340
+[0/v315_r5_only] 339/357 S0339
+[0/v315_r5_only] 340/357 S0341
+[0/v315_r5_only] 341/357 S0342
+[0/v315_r5_only] 342/357 S0343
+[0/v315_r5_only] 343/357 S0345
+[0/v315_r5_only] 344/357 S0344
+[0/v315_r5_only] 345/357 S0347
+[0/v315_r5_only] 346/357 S0346
+[0/v315_r5_only] 347/357 S0349
+[0/v315_r5_only] 348/357 S0348
+[0/v315_r5_only] 349/357 S0350
+[0/v315_r5_only] 350/357 S0351
+[0/v315_r5_only] 351/357 S0352
+[0/v315_r5_only] 352/357 S0353
+[0/v315_r5_only] 353/357 S0354
+[0/v315_r5_only] 354/357 S0356
+[0/v315_r5_only] 355/357 S0358
+[0/v315_r5_only] 356/357 S0357
+[0/v315_r5_only] 357/357 S0359
+complete: data/ablation_v315_eval357_glm53flash_r5_only/summary.json

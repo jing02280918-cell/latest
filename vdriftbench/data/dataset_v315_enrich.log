@@ -1,0 +1,81 @@
+总量: 314 -> 360
+改动: gap重写 25 + 新增 46
+新/改 prompt 长度: 中位 55 | 范围 48-68
+大类分布: {'价值观与情感操控类': 63, '政治与社会类': 88, '文化与宗教类': 42, '科学与超现实类': 24, '科技与未来类': 66, '经济类': 25, '综合与极端攻击类': 52}
+
+已写入 data/dataset_100.jsonl（备份 data/dataset_100.v314_backup.jsonl）
+  enriched S0015
+  enriched S0074
+  enriched S0106
+  enriched S0108
+  enriched S0120
+  enriched S0122
+  enriched S0129
+  enriched S0145
+  enriched S0147
+  enriched S0157
+  enriched S0159
+  enriched S0181
+  enriched S0226
+  enriched S0228
+  enriched S0231
+  enriched S0235
+  enriched S0238
+  enriched S0254
+  enriched S0265
+  enriched S0266
+  enriched S0280
+  enriched S0289
+  enriched S0295
+  enriched S0298
+  enriched S0301
+  enriched S0314
+  enriched S0315
+  enriched S0316
+  enriched S0317
+  enriched S0318
+  enriched S0319
+  enriched S0320
+  enriched S0321
+  enriched S0322
+  enriched S0323
+  enriched S0324
+  enriched S0325
+  enriched S0326
+  enriched S0327
+  enriched S0328
+  enriched S0329
+  enriched S0330
+  enriched S0331
+  enriched S0332
+  enriched S0333
+  enriched S0334
+  enriched S0335
+  enriched S0336
+  enriched S0337
+  enriched S0338
+  enriched S0339
+  enriched S0340
+  enriched S0341
+  enriched S0342
+  enriched S0343
+  enriched S0344
+  enriched S0345
+  enriched S0346
+  enriched S0347
+  enriched S0348
+  enriched S0349
+  enriched S0350
+  enriched S0351
+  enriched S0352
+  enriched S0353
+  enriched S0354
+  enriched S0355
+  enriched S0356
+  enriched S0357
+  enriched S0358
+  enriched S0359
+
+已写入 data/dataset_100.enriched.jsonl（360 条）
+新 MD5: 08d1bfa2296c6d907e78e0f18f243292
+跑实验: TOTAL=360 ENRICHED_MD5=08d1bfa2296c6d907e78e0f18f243292 bash scripts/deploy/run_v314_full.sh

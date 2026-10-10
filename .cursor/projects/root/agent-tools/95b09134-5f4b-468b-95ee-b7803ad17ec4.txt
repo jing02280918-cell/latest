@@ -1,0 +1,613 @@
+GLM-ZHIPU_Alibaba Cloud Model Studio(Model Studio)-Alibaba Cloud Model Studio(Model Studio)-阿里云帮助中心
+
+This document describes how to call the ZHIPU model inference service on Alibaba Cloud Model Studio.
+
+ImportantThis document applies only to the China (Beijing) region. To use the models, you must obtain an API key from the China (Beijing) region.
+
+ImportantAlibaba Cloud Model Studio has released a workspace-specific domain for the China (Beijing) region:`https://{WorkspaceId}.cn-beijing.maas.aliyuncs.com`. The new dedicated domain delivers superior performance and higher stability for inference requests. We recommend migrating from`https://dashscope.aliyuncs.com` to the new domain.
+
+`{WorkspaceId}` is your workspace ID, which can be found on the Workspace Details page in the Alibaba Cloud Model Studio console. The existing domain remains fully functional.
+
+## Service activation
+
+1. Go to the Model Studio console, search for ZHIPU/GLM, find the ZHIPU GLM-series text model card, and click Activate Now.
+2. In the dialog box, confirm the activation and authorization.
+
+After you complete these steps, you can call ZHIPU's GLM model service.
+
+## Quick start
+
+ZHIPU/GLM-5.3 is the latest model in the GLM series and supports a 1M context. Run the following code to quickly call the ZHIPU/GLM-5.3 model in thinking mode.
+
+You must have obtained an API Key and configured the API Key as an environment variable. If you call the model using an SDK, you must also install the SDK.
+
+#### OpenAI compatibility
+
+NoteThe`enable_thinking` parameter is not a standard OpenAI parameter. In the OpenAI Python SDK, you pass it in the`extra_body`. In the Node.js SDK, you pass it as a top-level parameter.
+
+#### Python
+
+### Sample code
+
+```python
+from openai import OpenAI
+import os
+
+# Initialize the OpenAI client
+client = OpenAI(
+    # If the environment variable is not set, replace "sk-xxx" with your Alibaba Cloud Model Studio API Key.
+    api_key=os.getenv("DASHSCOPE_API_KEY"),
+    # China (Beijing) region. Replace {WorkspaceId} with your Bailian workspace ID. URLs vary by region.
+    base_url="https://{WorkspaceId}.cn-beijing.maas.aliyuncs.com/compatible-mode/v1",
+)
+
+messages = [{"role": "user", "content": "Who are you?"}]
+completion = client.chat.completions.create(
+    model="ZHIPU/GLM-5.3",
+    messages=messages,
+    # Enable thinking mode by setting enable_thinking in extra_body.
+    # reasoning_effort controls the reasoning effort. Optional values: max (default), high, low.
+    extra_body={"enable_thinking": True, "reasoning_effort": "max"},
+    stream=True,
+    stream_options={
+        "include_usage": True
+    },
+)
+
+reasoning_content = ""  # Full reasoning process
+answer_content = ""  # Full response
+is_answering = False  # Tracks if the model is in the answering phase
+print("\n" + "=" * 20 + " Reasoning Process " + "=" * 20 + "\n")
+
+for chunk in completion:
+    if not chunk.choices:
+        print("\n" + "=" * 20 + " Token Usage " + "=" * 20 + "\n")
+        print(chunk.usage)
+        continue
+
+    delta = chunk.choices[0].delta
+
+    # Collect only the reasoning content
+    if hasattr(delta, "reasoning_content") and delta.reasoning_content is not None:
+        if not is_answering:
+            print(delta.reasoning_content, end="", flush=True)
+        reasoning_content += delta.reasoning_content
+
+    # When content is received, start generating the response
+    if hasattr(delta, "content") and delta.content:
+        if not is_answering:
+            print("\n" + "=" * 20 + " Full Response " + "=" * 20 + "\n")
+            is_answering = True
+        print(delta.content, end="", flush=True)
+        answer_content += delta.content
+
+```
+
+### Response
+
+```
+==================== Reasoning Process ====================
+
+Let me carefully consider the user's question. It seems simple, but it is actually quite profound.
+
+From a linguistic perspective, the user is using English, which means I should respond in English. This is a fundamental self-introduction question, but it may have multiple layers of meaning.
+
+First, I need to be clear that as a language model, I should honestly state my identity and nature. I am not a human, nor do I possess true emotions or consciousness. I am an AI assistant trained with deep learning technology. This is a basic fact.
+
+Second, considering the user's potential needs, they might want to know:
+1. What services can I provide?
+2. What are my areas of expertise?
+3. What are my limitations?
+4. How can they interact with me more effectively?
+
+In my answer, I should express a friendly and open attitude while maintaining professionalism and accuracy. I should state my main areas of expertise, such as knowledge Q&A, writing assistance, and creative support, while also frankly pointing out my limitations, such as the lack of real emotional experience.
+
+Furthermore, to make the answer more complete, I should also express a positive attitude and willingness to help users solve problems. I can guide the user to ask more specific questions to better showcase my abilities.
+
+Considering this is an open-ended opening, the answer should be concise and clear, yet contain enough information to give the user a clear understanding of my basic situation and lay a good foundation for subsequent conversations.
+
+Finally, the tone should remain humble and professional, neither too technical nor too casual, to make the user feel comfortable and natural.
+==================== Full Response ====================
+
+I am a GLM large language model trained by ZHIPU AI, designed to provide users with information and help solve problems. I am designed to understand and generate human language, and I can answer questions, provide explanations, or participate in discussions on various topics.
+
+I do not store your personal data, and our conversations are anonymous. Is there any topic I can help you understand or explore?
+==================== Token Usage ====================
+
+CompletionUsage(completion_tokens=344, prompt_tokens=7, total_tokens=351, completion_tokens_details=None, prompt_tokens_details=None)
+
+```
+
+#### Node.js
+
+### Sample code
+
+```javascript
+import OpenAI from "openai";
+import process from 'process';
+
+// Initialize the OpenAI client
+const openai = new OpenAI({
+    // If the environment variable is not set, replace "sk-xxx" with your Alibaba Cloud Model Studio API Key.
+    apiKey: process.env.DASHSCOPE_API_KEY,
+    // China (Beijing) region. Replace {WorkspaceId} with your Bailian workspace ID. URLs vary by region.
+    baseURL: 'https://{WorkspaceId}.cn-beijing.maas.aliyuncs.com/compatible-mode/v1'
+});
+
+let reasoningContent = ''; // Full reasoning process
+let answerContent = ''; // Full response
+let isAnswering = false; // Tracks if the model is in the answering phase
+
+async function main() {
+    try {
+        const messages = [{ role: 'user', content: 'Who are you?' }];
+
+        const stream = await openai.chat.completions.create({
+            model: 'ZHIPU/GLM-5.3',
+            messages,
+            // Note: In the Node.js SDK, non-standard parameters like enable_thinking are passed as top-level properties, not within extra_body.
+            enable_thinking: true,
+            // reasoning_effort controls the reasoning effort. Optional values: max (default), high, low.
+            reasoning_effort: 'max',
+            stream: true,
+            stream_options: {
+                include_usage: true
+            },
+        });
+
+        console.log('\n' + '='.repeat(20) + ' Reasoning Process ' + '='.repeat(20) + '\n');
+
+        for await (const chunk of stream) {
+            if (!chunk.choices?.length) {
+                console.log('\n' + '='.repeat(20) + ' Token Usage ' + '='.repeat(20) + '\n');
+                console.log(chunk.usage);
+                continue;
+            }
+
+            const delta = chunk.choices[0].delta;
+
+            // Collect only the reasoning content
+            if (delta.reasoning_content !== undefined && delta.reasoning_content !== null) {
+                if (!isAnswering) {
+                    process.stdout.write(delta.reasoning_content);
+                }
+                reasoningContent += delta.reasoning_content;
+            }
+
+            // When content is received, start generating the response
+            if (delta.content !== undefined && delta.content) {
+                if (!isAnswering) {
+                    console.log('\n' + '='.repeat(20) + ' Full Response ' + '='.repeat(20) + '\n');
+                    isAnswering = true;
+                }
+                process.stdout.write(delta.content);
+                answerContent += delta.content;
+            }
+        }
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
+
+main();
+
+```
+
+### Response
+
+```
+==================== Reasoning Process ====================
+
+Let me carefully consider the user's question, "Who are you?" This requires analysis and a response from multiple perspectives.
+
+First, this is a basic identity question. As a GLM large language model, I need to accurately state my identity. I should clearly state that I am an AI assistant developed by ZHIPU AI.
+
+Second, I need to consider the user's possible intentions. They might be first-time users wanting to understand basic functions, or they might want to confirm if I can provide specific help, or they might just be testing my response style. Therefore, I need to give an open and friendly answer.
+
+I also need to consider the completeness of the answer. In addition to introducing my identity, I should briefly explain my main functions, such as Q&A, content creation, and analysis, so the user knows how to use this assistant.
+
+Finally, I need to ensure a friendly and approachable tone, expressing a willingness to help. I can use expressions like "I'm happy to help" to make the user feel the warmth of the interaction.
+
+Based on these considerations, I can craft a concise and clear answer that both addresses the user's question and guides future interaction.
+==================== Full Response ====================
+
+I am GLM, a large language model trained by ZHIPU AI. Trained on massive text data, I can understand and generate human language to help users answer questions, provide information, and engage in conversations.
+
+I am continuously learning and improving to provide better services. I'm happy to answer your questions or provide assistance! What can I do for you?
+==================== Token Usage ====================
+
+{ prompt_tokens: 7, completion_tokens: 248, total_tokens: 255 }
+
+```
+
+#### HTTP
+
+### Sample code
+
+#### curl
+
+```bash
+# China (Beijing) region. Replace {WorkspaceId} with your Bailian workspace ID. URLs vary by region.
+curl -X POST https://{WorkspaceId}.cn-beijing.maas.aliyuncs.com/compatible-mode/v1/chat/completions \
+-H "Authorization: Bearer $DASHSCOPE_API_KEY" \
+-H "Content-Type: application/json" \
+-d '{
+    "model": "ZHIPU/GLM-5.3",
+    "messages": [
+        {
+            "role": "user",
+            "content": "Who are you?"
+        }
+    ],
+    "stream": true,
+    "stream_options": {
+        "include_usage": true
+    },
+    "enable_thinking": true,
+    "reasoning_effort": "max"
+}'
+
+```
+
+## Streaming tool call
+
+The ZHIPU/GLM-5.3、ZHIPU/GLM-5.2、ZHIPU/GLM-5.1, and ZHIPU/GLM-5 models support the`tool_stream` parameter. This parameter is a boolean that defaults to`false` and works only when`stream` is`true`. When enabled, the`arguments` of the`tool_call` parameter from Function calling are returned incrementally as a stream.
+
+The`stream` and`tool_stream` parameters work together as follows:
+
+| stream | tool_stream | How`tool_call` is returned |
+| --- | --- | --- |
+| true | true | `arguments` are returned incrementally in multiple chunks. |
+| true | false (default) | `arguments` are returned completely in a single chunk. |
+| false | true/false | `tool_stream` has no effect.`arguments` are returned all at once in the complete response. |
+
+#### OpenAI-compatible
+
+#### Python
+
+### Sample code
+
+```python
+from openai import OpenAI
+import os
+
+client = OpenAI(
+    api_key=os.getenv("DASHSCOPE_API_KEY"),
+    # China (Beijing) region. Replace {WorkspaceId} with your Bailian workspace ID. URLs vary by region.
+    base_url="https://{WorkspaceId}.cn-beijing.maas.aliyuncs.com/compatible-mode/v1",
+)
+
+tools = [
+    {
+        "type": "function",
+        "function": {
+            "name": "get_weather",
+            "description": "Get weather information for a specified city",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "city": {"type": "string", "description": "The name of the city"}
+                },
+                "required": ["city"]
+            }
+        }
+    }
+]
+
+messages = [{"role": "user", "content": "What is the weather like in Beijing"}]
+
+completion = client.chat.completions.create(
+    model="ZHIPU/GLM-5.3",
+    tools=tools,
+    messages=messages,
+    extra_body={
+        "tool_stream": True,
+    },
+    stream=True,
+    stream_options={"include_usage": True},
+)
+
+for chunk in completion:
+    if chunk.choices:
+        delta = chunk.choices[0].delta
+        if hasattr(delta, 'content') and delta.content:
+            print(f"[content] {delta.content}")
+        if hasattr(delta, 'tool_calls') and delta.tool_calls:
+            for tc in delta.tool_calls:
+                print(f"[tool_call] id={tc.id}, name={tc.function.name}, args={tc.function.arguments}")
+        if chunk.choices[0].finish_reason:
+            print(f"[finish_reason] {chunk.choices[0].finish_reason}")
+    if not chunk.choices and chunk.usage:
+        print(f"[usage] {chunk.usage}")
+
+```
+
+#### Node.js
+
+### Sample code
+
+```javascript
+import OpenAI from "openai";
+import process from 'process';
+
+const openai = new OpenAI({
+    apiKey: process.env.DASHSCOPE_API_KEY,
+    // China (Beijing) region. Replace {WorkspaceId} with your Bailian workspace ID. URLs vary by region.
+    baseURL: 'https://{WorkspaceId}.cn-beijing.maas.aliyuncs.com/compatible-mode/v1'
+});
+
+const tools = [
+    {
+        type: "function",
+        "function": {
+            name: "get_weather",
+            description: "Get weather information for a specified city",
+            parameters: {
+                type: "object",
+                properties: {
+                    city: { type: "string", description: "The name of the city" }
+                },
+                required: ["city"]
+            }
+        }
+    }
+];
+
+async function main() {
+    try {
+        const stream = await openai.chat.completions.create({
+            model: 'ZHIPU/GLM-5.3',
+            messages: [{ role: 'user', content: 'What is the weather like in Beijing' }],
+            tools: tools,
+            tool_stream: true,
+            stream: true,
+            stream_options: {
+                include_usage: true
+            },
+        });
+
+        for await (const chunk of stream) {
+            if (!chunk.choices?.length) {
+                if (chunk.usage) {
+                    console.log(`[usage] ${JSON.stringify(chunk.usage)}`);
+                }
+                continue;
+            }
+
+            const delta = chunk.choices[0].delta;
+
+            if (delta.content) {
+                console.log(`[content] ${delta.content}`);
+            }
+
+            if (delta.tool_calls) {
+                for (const tc of delta.tool_calls) {
+                    console.log(`[tool_call] id=${tc.id}, name=${tc.function.name}, args=${tc.function.arguments}`);
+                }
+            }
+
+            if (chunk.choices[0].finish_reason) {
+                console.log(`[finish_reason] ${chunk.choices[0].finish_reason}`);
+            }
+        }
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
+
+main();
+
+```
+
+#### curl
+
+```bash
+# China (Beijing) region. Replace {WorkspaceId} with your Bailian workspace ID. URLs vary by region.
+curl -X POST https://{WorkspaceId}.cn-beijing.maas.aliyuncs.com/compatible-mode/v1/chat/completions \
+-H "Authorization: Bearer $DASHSCOPE_API_KEY" \
+-H "Content-Type: application/json" \
+-d '{
+    "model": "ZHIPU/GLM-5.3",
+    "messages": [
+        {
+            "role": "user",
+            "content": "What is the weather like in Beijing"
+        }
+    ],
+    "tools": [
+        {
+            "type": "function",
+            "function": {
+                "name": "get_weather",
+                "description": "Get weather information for a specified city",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "city": {"type": "string", "description": "The name of the city"}
+                    },
+                    "required": ["city"]
+                }
+            }
+        }
+    ],
+    "stream": true,
+    "stream_options": {"include_usage": true},
+    "tool_stream": true
+}'
+
+```
+
+## Thinking control (thinking.type and reasoning_effort)
+
+ZHIPU/GLM-5.3 always runs in thinking mode and does not support disabling thinking. Keep`thinking.type` set to`enabled`(or keep`enable_thinking` set to`true`), and use`reasoning_effort` to control the reasoning depth.
+
+| Parameter | Description | Supported values |
+| --- | --- | --- |
+| `thinking.type` | Controls whether thinking is enabled. The default value is`enabled`. ZHIPU/GLM-5.3 no longer supports`disabled`. Passing`disabled` causes the API request to fail. | `enabled` |
+| `reasoning_effort` | Controls the reasoning depth of the model. If this parameter is not specified, the default value is`max`. We recommend that you use`max`. | `max`(default): deep reasoning `high`: enhanced reasoning `low`: light reasoning |
+
+## Clear historical reasoning (clear_thinking)
+
+The`clear_thinking` parameter controls whether the`reasoning_content`(reasoning process) from previous turns is passed to the model as context in multi-turn conversations. Only GLM series models support this parameter.
+
+- `true`: Ignores the`reasoning_content` from previous turns and uses only non-reasoning content, such as visible text, tool calls, and tool results, as context. This reduces context length and cost.
+- `false`(default): Retains the`reasoning_content` from previous turns and provides it to the model along with the context. To enable Preserved Thinking, you must pass the historical`reasoning_content` through in messages completely, unmodified, and in its original order. Omitting, truncating, rewriting, or reordering it degrades the effect or prevents it from taking effect.
+
+NoteThis parameter affects only historical reasoning content across turns. It does not change whether the model generates or outputs reasoning within the current turn.
+
+The following examples use the same set of multi-turn messages, where the`assistant` messages carry`reasoning_content`. When`clear_thinking`=`true`, historical reasoning content is not counted toward the context, so`prompt_tokens` is lower than with`false`(the default). The actual value depends on the length of the historical`reasoning_content`.
+
+#### OpenAI-compatible
+
+Python
+
+```python
+from openai import OpenAI
+import os
+
+client = OpenAI(
+    api_key=os.getenv("DASHSCOPE_API_KEY"),
+    # The following is the URL for the China (Beijing) region. Replace {WorkspaceId} with your Model Studio workspace ID. URLs differ by region.
+    base_url="https://{WorkspaceId}.cn-beijing.maas.aliyuncs.com/compatible-mode/v1",
+)
+
+# Multi-turn conversation. The assistant messages carry reasoning_content (historical reasoning process).
+messages = [
+    {"role": "user", "content": "What is 15 * 23?"},
+    {"role": "assistant", "content": "15 multiplied by 23 equals 345.", "reasoning_content": "15 * 23 = 345"},
+    {"role": "user", "content": "What if you add 55 to that?"},
+    {"role": "assistant", "content": "345 plus 55 equals 400.", "reasoning_content": "345 + 55 = 400"},
+    {"role": "user", "content": "What was the intermediate result?"},
+]
+
+completion = client.chat.completions.create(
+    model="ZHIPU/GLM-5.3",
+    messages=messages,
+    extra_body={
+    "thinking": {
+        "type": "enabled",
+        "clear_thinking": False  # False = retain reasoning content
+      }
+  }
+)
+print(completion.usage.prompt_tokens)  # Lower with true than with false
+
+```
+
+curl
+
+```bash
+# The following is the URL for the China (Beijing) region. Replace {WorkspaceId} with your Model Studio workspace ID. URLs differ by region.
+curl -X POST https://{WorkspaceId}.cn-beijing.maas.aliyuncs.com/compatible-mode/v1/chat/completions \
+-H "Authorization: Bearer $DASHSCOPE_API_KEY" \
+-H "Content-Type: application/json" \
+-d '{
+    "model": "ZHIPU/GLM-5.3",
+    "messages": [
+        {"role": "user", "content": "What is 15 * 23?"},
+        {"role": "assistant", "content": "15 multiplied by 23 equals 345.", "reasoning_content": "15 * 23 = 345"},
+        {"role": "user", "content": "What if you add 55 to that?"},
+        {"role": "assistant", "content": "345 plus 55 equals 400.", "reasoning_content": "345 + 55 = 400"},
+        {"role": "user", "content": "What was the intermediate result?"}
+    ],
+    "thinking": {
+        "type": "enabled",
+        "clear_thinking": false
+    }
+}'
+
+```
+
+## Other features
+
+| Model | Multi-turn conversation | Function calling | Structured output | Internet search | Prefix completion | Context caching | Reasoning effort control |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| ZHIPU/GLM-5.3 | Supported | Supported | Not supported | Not supported | Supported | Supported | Supported reasoning_effort |
+| ZHIPU/GLM-5.2 | Supported | Supported | Supported Non-thinking mode only | Not supported | Supported | Supported | Supported reasoning_effort |
+| ZHIPU/GLM-5.1 | Supported | Supported | Supported Non-thinking mode only | Not supported | Supported | Supported | Not supported |
+| ZHIPU/GLM-5 | Supported | Supported | Supported Non-thinking mode only | Not supported | Supported | Supported | Not supported |
+
+Context caching uses implicit caching and is enabled by default. It differs from the implicit caching service of Alibaba Cloud Model Studio as follows:
+
+- The minimum number of cached tokens is 512, compared to 256 for Model Studio.
+
+## Default parameter values
+
+| Model | enable_thinking | temperature | top_p | top_k | repetition_penalty |
+| --- | --- | --- | --- | --- | --- |
+| ZHIPU/GLM-5.3 | true (cannot be disabled) | 1.0 | 0.95 | - | - |
+| ZHIPU/GLM-5.2 | true | 1.0 | 0.95 | - | - |
+| ZHIPU/GLM-5.1 | true | 1.0 | 0.95 | - | - |
+| ZHIPU/GLM-5 | true | 1.0 | 0.95 | - | - |
+
+A hyphen (-) indicates that the parameter has no default value and is not supported.
+
+## Model list and billing
+
+The GLM series models are hybrid reasoning models from Zhipu AI. They are designed for intelligent agents and offer two modes: thinking and non-thinking. ZHIPU/GLM-5.3 supports only thinking mode.
+
+For model context length and pricing information, see the Model Studio console.
+
+Billing is based on the input and output tokens of the model.
+
+In thinking mode, the chain of thought is billed based on output tokens.
+
+## Error codes
+
+If an error occurs, see Error codes to resolve the issue.
+
+The following are service error codes unique to Zhipu. HTTP error codes are the same as the general error codes for Model Studio. See the link above.
+
+| Error category | Error code | Error message |
+| --- | --- | --- |
+| Basic error | 500 | Internal error |
+| Authentication error | 1000 | Authentication failed |
+| | 1001 | The Authentication parameter was not received in the header. Authentication cannot be performed. |
+| | 1002 | The Authentication Token is invalid. Make sure that the Authentication Token is passed correctly. |
+| | 1003 | The Authentication Token has expired. Regenerate or obtain a new one. |
+| | 1004 | Authentication Token verification failed. |
+| | 1100 | Account read/write |
+| Account error | 1110 | Your account is inactive. Check your account information. |
+| | 1111 | Your account does not exist. |
+| | 1112 | Your account is locked. Contact customer service to unlock it. |
+| | 1113 | Your account has an overdue balance. Top up your account and try again. |
+| | 1120 | Cannot access your account. Try again later. |
+| | 1121 | Account locked due to a policy violation. |
+| API call error | 1200 | API call error |
+| | 1210 | Invalid API call parameters. Check the documentation. |
+| | 1211 | The model does not exist. Check the model code. |
+| | 1212 | The current model does not support the`${method}` call method. |
+| | 1213 | The`${field}` parameter was not received. |
+| | 1214 | The`${field}` parameter is invalid. Check the documentation. |
+| | 1215 | `${field1}` and`${field2}` cannot be set at the same time. Check the documentation. |
+| | 1220 | You do not have permission to access`${API_name}`. |
+| | 1221 | The API`${API_name}` is no longer available. |
+| | 1222 | The API`${API_name}` does not exist. |
+| | 1230 | API call process error. |
+| | 1231 | You already have a request:`${request_id}` |
+| | 1234 | Network error. Error ID:`${error_id}`. Contact customer service. |
+| | 1261 | Prompt is too long. |
+| API policy block error | 1300 | The API call was blocked by a policy. |
+| | 1301 | The system detected potentially unsafe or sensitive content in the input or output. Avoid using prompts that might generate sensitive content. Thank you for your cooperation. |
+| | 1302 | The concurrency for this API is too high. Reduce the concurrency, or contact customer service to increase the limit. |
+| | 1303 | The request rate for this API is too high. Reduce the request rate, or contact customer service to increase the limit. |
+| | 1304 | The daily call limit for this API has been reached. To increase the limit, contact customer service. |
+| | 1305 | The traffic limit for this API has been reached. |
+| | 1308 | The usage limit of`${number}``${unit}` has been reached. Your limit will be reset at`${next_flush_time}`. |
+| | 1309 | Your GLM Coding Plan has expired and is unavailable. To restore service, renew your plan at https://bigmodel.cn/claude-code https://bigmodel.cn/claude-code. |
+| | 1310 | The weekly/monthly usage limit has been reached. Your limit will be reset at`${next_flush_time}`. |
+| | 1311 | Your current subscription plan does not include access to`${model_name}`. |
+| | 1312 | This model is experiencing high traffic. Try again later, or switch to another model such as`${model_name}`. |
+| | 1313 | Your account usage violates the fair use policy, and your request rate has been limited. For more information, see the "Terms and Agreements - Subscription and Auto-renewal Agreement". To restore full access, go to Personal Center > Programming Plan Overview and apply to lift the restriction. |
+
+Previous：GLM - Alibaba Cloud Next：MiniMax – Alibaba Cloud
+
+Is this page helpful?
+
+Feedback
+
+### Follow Us
+
+Follow the Alibaba Cloud official account or download the app to stay updated. Manage and monitor your cloud services anytime, anywhere.
+
+Contact us：4008013260

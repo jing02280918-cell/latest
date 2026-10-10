@@ -1,0 +1,187 @@
+parameters:
+  - name: jobName
+    type: string
+  - name: jobDisplayName
+    type: string
+  - name: testAzureSubscription
+    type: string
+  - name: newDir
+    type: string
+  - name: testsFolder
+    type: string
+  - name: makeTarget
+    type: string
+  - name: testBatches
+    type: object
+    default: []
+
+jobs:
+- job: ${{ parameters.jobName }}
+  displayName: ${{ parameters.jobDisplayName }}
+  timeoutInMinutes: 360
+  pool:
+    vmImage: ubuntu-latest
+  steps:
+  - checkout: self
+    fetchDepth: 1
+  - task: UsePythonVersion@0
+    inputs:
+      versionSpec: '3.12'
+      addToPath: true
+  - bash: |
+      mkdir -p ~/.pyrit
+    displayName: "Create PyRIT configuration directory"
+    name: create_pyrit_dir
+  - task: AzureKeyVault@2
+    displayName: Azure Key Vault - retrieve .env file secret
+    inputs:
+      azureSubscription: 'integration-test-service-connection'
+      KeyVaultName: 'pyrit-environment'
+      SecretsFilter: 'env-global'
+      RunAsPreJob: false
+  - bash: |
+      python -c "
+      import os;
+      secret = os.environ.get('PYRIT_TEST_SECRET');
+      if not secret:
+        raise ValueError('PYRIT_TEST_SECRET is not set');
+      with open(os.path.expanduser('~/.pyrit/.env'), 'w') as file:
+        file.write(secret)"
+    env:
+      PYRIT_TEST_SECRET: $(env-global)
+    name: create_env_file
+  - bash: |
+      cp build_scripts/env_local_integration_test ~/.pyrit/.env.local
+    displayName: "Create .env.local from example"
+  - script:
+      wget -qO- https://astral.sh/uv/install.sh | sh
+    name: install_uv
+  - bash: sudo apt-get install python3-tk
+    name: install_tkinter
+  - bash: |
+      set -e
+      # Detect Ubuntu version
+      UBUNTU_VERSION=$(grep VERSION_ID /etc/os-release | cut -d '"' -f 2)
+      SUPPORTED_VERSIONS="18.04 20.04 22.04 24.04 24.10"
+
+      if ! [[ "$SUPPORTED_VERSIONS" == *"$UBUNTU_VERSION"* ]]; then
+        echo "Ubuntu $UBUNTU_VERSION is not currently supported."
+        exit 1
+      fi
+
+      # Download the package to configure the Microsoft repo
+      curl -sSL -O https://packages.microsoft.com/config/ubuntu/$(grep VERSION_ID /etc/os-release | cut -d '"' -f 2)/packages-microsoft-prod.deb
+      # Install the package
+      sudo dpkg -i packages-microsoft-prod.deb
+      # Delete the file
+      rm packages-microsoft-prod.deb
+
+      # Install the driver
+      sudo apt-get update
+      sudo ACCEPT_EULA=Y apt-get install -y msodbcsql18
+
+      echo "Microsoft ODBC Driver 18 installed successfully."
+    displayName: 'Install ODBC Driver 18 for SQL Server'
+  - bash: uv sync --extra all
+    name: install_PyRIT
+  - bash: df -all -h
+    name: disk_space_check
+# This step ensures that tests are run outside of the PyRIT repository to test that .env files are accessed correctly.
+  - bash: |
+      PyRIT_DIR=$(pwd)
+      NEW_DIR="${{ parameters.newDir }}"
+      cd ..
+      mkdir -p $NEW_DIR/tests
+      cp -r $PyRIT_DIR/doc $NEW_DIR
+      cp -r $PyRIT_DIR/assets $NEW_DIR
+      cp -r $PyRIT_DIR/tests/${{ parameters.testsFolder }} $NEW_DIR/tests
+      cd $NEW_DIR
+    displayName: "Create and switch to new test directory"
+  - task: AzureCLI@2
+    displayName: "Authenticate with service principal, cache Cognitive Services access token, and run tests"
+    inputs:
+      azureSubscription: ${{ parameters.testAzureSubscription }}
+      scriptType: 'bash'
+      scriptLocation: 'inlineScript'
+      inlineScript: |
+        set -e
+
+        # Prefetch token for Cognitive Services before ID token expires (60-90 minute validity)
+        az account get-access-token --scope https://cognitiveservices.azure.com/.default --output none
+        echo "Cognitive Services access token cached successfully."
+
+        # Prefetch token for Azure ML / Foundry model endpoints
+        az account get-access-token --scope https://ml.azure.com/.default --output none
+        echo "Azure ML/Foundry access token cached successfully."
+
+        # Prefetch token for Azure SQL Database
+        az account get-access-token --scope https://database.windows.net/.default --output none
+        echo "Azure SQL Database access token cached successfully."
+
+        # Run tests
+        test_batches="${{ join(' ', parameters.testBatches) }}"
+        if [ -n "$test_batches" ]; then
+          batch_number=0
+          for test_batch in $test_batches; do
+            batch_number=$((batch_number + 1))
+            make ${{ parameters.makeTarget }} INTEGRATION_TESTS="$test_batch" JUNIT_XML="junit/test-results-${batch_number}.xml"
+          done
+        else
+          make ${{ parameters.makeTarget }}
+        fi
+  - bash: |
+      set -uo pipefail
+      artifact_dir="$(Build.ArtifactStagingDirectory)/backend-logs"
+      mkdir -p "$artifact_dir"
+
+      # ServerLauncher writes the backend log to tempfile.gettempdir(), which honours
+      # TMPDIR/TEMP/TMP before falling back to /tmp, so check the agent temp directory too.
+      log_found=false
+      for candidate in "${TMPDIR:-}" "${TEMP:-}" "${TMP:-}" "${AGENT_TEMPDIRECTORY:-}" /tmp; do
+        [ -n "$candidate" ] || continue
+        if [ -f "$candidate/pyrit_backend.log" ]; then
+          log_found=true
+          # Only claim success, and only ask for a publish, if the copy actually landed;
+          # publishing an empty directory would report a log that isn't there. Report the
+          # size too, because a zero byte log is a real outcome and an empty artifact
+          # otherwise looks like this step failed.
+          if cp_error=$(cp "$candidate/pyrit_backend.log" "$artifact_dir/pyrit_backend.log" 2>&1); then
+            log_bytes=$(wc -c <"$artifact_dir/pyrit_backend.log")
+            echo "Collected backend log from $candidate ($log_bytes bytes)"
+            echo "##vso[task.setvariable variable=backendLogFound]true"
+          else
+            echo "##vso[task.logissue type=warning]Found pyrit_backend.log in $candidate but failed to copy it: $cp_error"
+          fi
+          break
+        fi
+      done
+
+      # Distinguish the two outcomes: a job that never launches a backend is expected to have
+      # no log, whereas a log that was found but could not be collected is a real problem.
+      if [ "${log_found:-false}" = false ]; then
+        echo "No pyrit_backend.log found; this job did not launch a backend."
+      fi
+    displayName: "Collect pyrit_backend log"
+    name: collect_backend_log
+    condition: always()
+  - task: PublishPipelineArtifact@1
+    displayName: "Publish pyrit_backend log"
+    condition: and(always(), eq(variables['backendLogFound'], 'true'))
+    # Publishing a diagnostic log must never change the outcome of the test job.
+    continueOnError: true
+    inputs:
+      targetPath: $(Build.ArtifactStagingDirectory)/backend-logs
+      # BuildId stays the same when a failed job is retried, and pipeline artifacts cannot be
+      # overwritten, so JobAttempt is needed to keep each attempt's artifact name unique.
+      artifactName: backend-logs-${{ parameters.jobName }}-$(Build.BuildId)-attempt-$(System.JobAttempt)
+      publishLocation: pipeline
+  - bash: |
+      rm -f ~/.pyrit/.env ~/.pyrit/.env.local
+    name: clean_up_env_files
+    condition: always()
+  - task: PublishTestResults@2
+    condition: always()
+    inputs:
+      testResultsFormat: 'JUnit'
+      testResultsFiles: 'junit/test-results*.xml'
+      mergeTestResults: true

@@ -1,0 +1,19 @@
+{
+  "n": 357,
+  "n_ok": 353,
+  "success_pct": 90.93484419263456,
+  "partial_pct": 0.0,
+  "fail_pct": 9.06515580736544,
+  "success_n": 321,
+  "partial_n": 0,
+  "fail_n": 32,
+  "avg_queries": 3.7138810198300285,
+  "avg_best_rs": 4.1671388101983,
+  "elapsed_s": 4480.391889095306,
+  "generated_at": "2026-10-01T09:01:25",
+  "judge_outcome_mode": "行为二元",
+  "judge_n_samples": 1,
+  "judge_per_dimension": false,
+  "target_model": "ZHIPU/GLM-5.3-Flash",
+  "target_max_tokens": null
+}

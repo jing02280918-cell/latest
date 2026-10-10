@@ -1,0 +1,120 @@
+{
+  "version": "v3.15",
+  "mock": false,
+  "runs": {
+    "0": {
+      "full": {
+        "status": "complete",
+        "n_expected": 357,
+        "n_completed": 357,
+        "missing_ids": [],
+        "logical_calls_by_role": {
+          "target": 0
+        },
+        "elapsed_seconds": 0.101,
+        "resolved_by_distribution": {
+          "layer2_llm": 904,
+          "layer1_geometry": 131,
+          "layer1_dual_channel": 7
+        },
+        "failure_score_rounds": 0,
+        "r5_first_success_count": 331,
+        "r5_first_success_pct": 92.71708683473389,
+        "r5_with_retry_success_count": 353,
+        "r5_with_retry_success_pct": 98.8795518207283,
+        "sample_success_count": 356,
+        "sample_success_pct": 99.71988795518207,
+        "mean_best_risk_score": 6.291316526610644,
+        "mean_build_up_rounds": 3.918767507002801,
+        "mean_r5_retry_rounds": 0.09523809523809523,
+        "hard_refusal_stopped_count": 9,
+        "mean_target_logical_calls": 0.0
+      },
+      "v315_no_target_history": {
+        "status": "complete",
+        "n_expected": 357,
+        "n_completed": 357,
+        "missing_ids": [],
+        "logical_calls_by_role": {
+          "target": 12,
+          "judge": 12,
+          "classifier": 5,
+          "draft": 10
+        },
+        "elapsed_seconds": 368.115,
+        "resolved_by_distribution": {
+          "layer2_llm": 893,
+          "layer1_geometry": 196,
+          "layer1_dual_channel": 2
+        },
+        "failure_score_rounds": 0,
+        "r5_first_success_count": 208,
+        "r5_first_success_pct": 58.26330532212885,
+        "r5_with_retry_success_count": 267,
+        "r5_with_retry_success_pct": 74.78991596638656,
+        "sample_success_count": 335,
+        "sample_success_pct": 93.8375350140056,
+        "mean_best_risk_score": 5.53781512605042,
+        "mean_build_up_rounds": 4.056022408963585,
+        "mean_r5_retry_rounds": 0.5826330532212886,
+        "hard_refusal_stopped_count": 36,
+        "mean_target_logical_calls": 0.03361344537815126
+      }
+    }
+  },
+  "paired": {
+    "0": {
+      "v315_no_target_history": {
+        "status": "complete",
+        "n_pairs": 357,
+        "r5_first_success": {
+          "full_only": 136,
+          "ablation_only": 13,
+          "delta_full_minus_ablation_pp": 34.45378151260504,
+          "mcnemar_exact_p_unadjusted": 5.171576232995757e-27
+        },
+        "r5_with_retry_success": {
+          "full_only": 88,
+          "ablation_only": 2,
+          "delta_full_minus_ablation_pp": 24.089635854341736,
+          "mcnemar_exact_p_unadjusted": 6.617444900424222e-24
+        },
+        "sample_success": {
+          "full_only": 21,
+          "ablation_only": 0,
+          "delta_full_minus_ablation_pp": 5.882352941176471,
+          "mcnemar_exact_p_unadjusted": 9.5367431640625e-07
+        }
+      }
+    }
+  },
+  "ablation_only": true,
+  "paired_full_dir": "/root/vdriftbench/data/ablation_v315_eval357_deepseekpro_full_proxy/seed_0/full",
+  "status": "complete",
+  "aggregate": {
+    "v315_no_target_history": {
+      "status": "complete",
+      "n_seeds": 1,
+      "r5_first_success_pct": {
+        "mean": 58.26330532212885,
+        "std_between_seeds": null
+      },
+      "r5_with_retry_success_pct": {
+        "mean": 74.78991596638656,
+        "std_between_seeds": null
+      },
+      "sample_success_pct": {
+        "mean": 93.8375350140056,
+        "std_between_seeds": null
+      },
+      "mean_best_risk_score": {
+        "mean": 5.53781512605042,
+        "std_between_seeds": null
+      },
+      "mean_target_logical_calls": {
+        "mean": 0.03361344537815126,
+        "std_between_seeds": null
+      }
+    }
+  }
+}

@@ -1,0 +1,124 @@
+#1790562520
+pwd
+#1790562520
+ls -la
+#1790562520
+find /hy-tmp /root -maxdepth 3 -type d \( -iname '*v-drift*' -o -iname '*vdrift*' -o -iname '*drift*' \) 2>/dev/null | head -80
+#1790562530
+cd /root/vdriftbench
+#1790562530
+git status --short --branch
+#1790562530
+git remote -v
+#1790562530
+git tag --list | tail -20
+#1790562530
+find .. -name AGENTS.md -print
+#1790562531
+printf '%s\n' '--- top-level ---'
+#1790562531
+find . -maxdepth 2 -type f | sort | head -120
+#1790562541
+git log --oneline --decorate -12
+#1790562541
+rintf '%s\n' '--- README ---'
+#1790562541
+sed -n '1,260p' README.md
+#1790562541
+printf '%s\n' '--- HANDOFF ---'
+#1790562541
+sed -n '1,280p' docs/HANDOFF.md
+#1790562541
+printf '%s\n' '--- PYPROJECT ---'
+#1790562541
+sed -n '1,220p' pyproject.toml
+#1790562541
+printf '%s\n' '--- CONFIG ---'
+#1790562541
+sed -n '1,260p' configs/default.yaml
+#1790562551
+printf '%s\n' '--- v3.14-v3.15 references ---'
+#1790562551
+rg -n "v3\.1[45]|3\.15\.1|v3151|V-Drift" README.md docs data/*.md data/*.json scripts vdriftbench tests --glob '!data/*run*' --glob '!*.bak*' | head -260
+#1790562551
+printf '%s\n' '--- HANDOFF headings ---'
+#1790562551
+rg -n '^#{1,4} ' docs/HANDOFF.md | tail -80
+#1790562551
+printf '%s\n' '--- METHOD headings ---'
+#1790562551
+rg -n '^#{1,4} ' docs/METHOD_v3.md | tail -100
+#1790562566
+grep -RInE "v3\.1[45]|3\.15\.1|v3151|V-Drift" README.md docs scripts vdriftbench tests data/*.md data/*.json 2>/dev/null | head -280
+#1790562566
+grep -nE '^#{1,4} ' docs/HANDOFF.md | tail -80
+#1790562566
+grep -nE '^#{1,4} ' docs/METHOD_v3.md | tail -100
+#1790562575
+sed -n '1,270p' scripts/inherit_v315_to_v3151.py
+#1790562575
+printf '%s\n' '--- inherited summary ---'
+#1790562575
+sed -n '1,260p' data/v3151_inherited_experiments_summary.json
+#1790562575
+printf '%s\n' '--- completed summary ---'
+#1790562575
+sed -n '1,260p' data/v315_completed_experiments_summary.json
+#1790562575
+printf '%s\n' '--- per round ---'
+#1790562575
+sed -n '1,260p' data/v3.15.1_per_round_scores.md
+#1790562589
+sed -n '1,250p' vdriftbench/config.py
+#1790562589
+printf '%s\n' '--- principles v3.15/v3.15.1 ---'
+#1790562589
+sed -n '430,770p' vdriftbench/principles.py
+#1790562589
+printf '%s\n' '--- pipeline core ---'
+#1790562589
+sed -n '1,180p' vdriftbench/pipeline.py
+#1790562589
+sed -n '300,720p' vdriftbench/pipeline.py
+#1790562599
+grep -n "def prompt_history_for_genre\|success_only_history\|def rewrite_genre_prompt\|def repair_genre_prompt\|_r5_genre_request_defect\|_pair_style_opening_ok" vdriftbench/pipeline.py vdriftbench/principles.py
+#1790562599
+sed -n '70,145p' vdriftbench/pipeline.py
+#1790562599
+sed -n '500,760p' vdriftbench/principles.py
+#1790562599
+printf '%s\n' '--- uncommitted diff for v3.15.1 paths ---'
+#1790562599
+git diff -- vdriftbench/config.py vdriftbench/pipeline.py vdriftbench/principles.py main.py tests/test_pipeline_smoke.py | grep -nE "success_history|success_only|prompt_history_for_genre|v3\.15\.1|no-r5" -C 5
+#1790562609
+sed -n '170,225p' vdriftbench/pipeline.py
+#1790562609
+sed -n '175,225p' vdriftbench/principles.py
+#1790562609
+sed -n '1,250p' main.py
+#1790562609
+printf '%s\n' '--- live processes ---'
+#1790562609
+ps -eo pid,etime,pcpu,pmem,args --sort=-pcpu | grep -E 'python|vllm|run_v315|pair|crescendo' | grep -v grep | head -40
+#1790562609
+printf '%s\n' '--- GPU ---'
+#1790562609
+nvidia-smi --query-gpu=name,memory.total,memory.used,utilization.gpu --format=csv,noheader
+#1790562622
+find data -maxdepth 3 -type f \( -name 'DRIVER_STATUS' -o -name 'inheritance.json' -o -name 'v3151_methods_asr_risk_comparison.json' \) -print -exec sh -c 'echo --- "$1"; sed -n "1,220p" "$1"' sh {} \;
+#1790562622
+printf '%s\n' '--- run directory counts ---'
+#1790562622
+for d in data/v3.15.1_run data/v3.15.1_qwen37plus_run data/v3.15_flash_run data/v3.15_run data/v3.15_qwen37plus_run; do echo "$d"; ls -ld "$d" 2>/dev/null; wc -l "$d/results.jsonl" 2>/dev/null; done
+#1790562632
+grep -RIn "r5_prompt_success_history_only\|successful_build_up_history\|prompt_history_for_genre\|success_only_history" tests | head -100
+#1790562641
+/hy-tmp/venv/bin/python -m pytest -q tests/test_r5_retry.py
+#1790562775
+pwd
+#1790562775
+sed -n '1,300p' vdriftbench/ablation.py
+#1790562775
+sed -n '1,300p' scripts/run_ablation.py
+#1790562775
+sed -n '1,260p' tests/test_ablation.py

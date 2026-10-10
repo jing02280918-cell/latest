@@ -1,0 +1,9 @@
+# Minimal deps for CoP on V-DriftBench v3.15 (same stack as PAIR).
+# Do NOT pip install -r requirements.txt here — it can pin/upgrade packages
+# and interfere with v3.15 / PAIR runs in /hy-tmp/venv.
+#
+# v3.15 path only needs packages already used by vdriftbench + PAIR:
+#   openai, pandas, fschat, regex, torch, transformers
+#
+# Install only if import fails (same pattern as run_pair_baseline.py):
+#   /hy-tmp/venv/bin/pip install pandas fschat regex

@@ -1,0 +1,81 @@
+{
+  "generated_at": "2026-09-12",
+  "plague_v315_deepseek": {
+    "status": "complete",
+    "target": "deepseek-v4-pro",
+    "n": 357,
+    "plague_asr_pct": 66.67,
+    "plague_successes": 238,
+    "baselines_on_357": {
+      "vdrift_R5含补救_pct": 98.88,
+      "pair_pct": 94.68,
+      "cop_pct": 93.56
+    },
+    "gap_pp_vs_r5": 32.21,
+    "quadrant_vs_r5": {
+      "both": 235,
+      "plague_only": 3,
+      "r5_only": 118,
+      "both_fail": 1
+    }
+  },
+  "vdrift_v315_qwen37plus_partial": {
+    "status": "in_progress",
+    "target": "qwen3.7-plus",
+    "progress": "91/357",
+    "metrics_on_completed": {
+      "sample_success_pct": 96.7,
+      "R5首轮_pct": 83.52,
+      "R5含补救_pct": 89.01
+    },
+    "deepseek_v315_same_ids": {
+      "sample_success_pct": 100.0,
+      "R5含补救_pct": 98.9
+    },
+    "gap_pp_sample_vs_deepseek_r5": 9.89,
+    "quadrant_sample_success": {
+      "both": 88,
+      "qwen_only": 0,
+      "deepseek_only": 3,
+      "both_fail": 0
+    },
+    "by_macro": [
+      {
+        "label": "政治与社会类",
+        "n": 25,
+        "qwen_sample_pct": 96.0,
+        "deepseek_sample_pct": 100.0
+      },
+      {
+        "label": "经济类",
+        "n": 21,
+        "qwen_sample_pct": 100.0,
+        "deepseek_sample_pct": 100.0
+      },
+      {
+        "label": "文化与宗教类",
+        "n": 15,
+        "qwen_sample_pct": 86.7,
+        "deepseek_sample_pct": 100.0
+      },
+      {
+        "label": "价值观与情感操控类",
+        "n": 13,
+        "qwen_sample_pct": 100.0,
+        "deepseek_sample_pct": 100.0
+      },
+      {
+        "label": "科技与未来类",
+        "n": 12,
+        "qwen_sample_pct": 100.0,
+        "deepseek_sample_pct": 100.0
+      },
+      {
+        "label": "科学与超现实类",
+        "n": 5,
+        "qwen_sample_pct": 100.0,
+        "deepseek_sample_pct": 100.0
+      }
+    ]
+  }
+}

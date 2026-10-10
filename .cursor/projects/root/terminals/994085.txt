@@ -1,0 +1,24 @@
+---
+pid: 1602511
+cwd: "/root/vdriftbench"
+command: "TOKEN=$(cat /tmp/gh_token_$$ 2>/dev/null || true); if [ -z \"$TOKEN\" ]; then printf '%s' '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' > /tmp/.git_push_token && chmod 600 /tmp/.git_push_token && TOKEN=$(cat /tmp/.git_push_token); fi; cd /root/vdriftbench && GIT_TRACE=1 git push \"https://x-access-token:${TOKEN}@github.com/jing02280918-cell/latest.git\" main 2>&1 | tail -20; rm -f /tmp/.git_push_token"
+started_at: 2026-10-10T07:16:08.055Z
+running_for_ms: 1050158  
+---
+15:16:08.246005 git.c:439               trace: built-in: git push https://x-access-token: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@github.com/jing02280918-cell/latest.git main
+15:16:08.253355 run-command.c:663       trace: run_command: GIT_DIR=.git git-remote-https https://x-access-token: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@github.com/jing02280918-cell/latest.git https://x-access-token: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@github.com/jing02280918-cell/latest.git
+15:16:09.795122 run-command.c:663       trace: run_command: git send-pack --stateless-rpc --helper-status --thin --no-progress https://x-access-token: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@github.com/jing02280918-cell/latest.git/ --stdin
+15:16:09.806421 git.c:439               trace: built-in: git send-pack --stateless-rpc --helper-status --thin --no-progress https://x-access-token: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@github.com/jing02280918-cell/latest.git/ --stdin
+15:16:09.807849 run-command.c:663       trace: run_command: git pack-objects --all-progress-implied --revs --stdout --thin --delta-base-offset -q
+15:16:09.810669 git.c:439               trace: built-in: git pack-objects --all-progress-implied --revs --stdout --thin --delta-base-offset -q
+error: unable to rewind rpc post data - try increasing http.postBuffer
+error: RPC failed; curl 56 GnuTLS recv error (-54): Error in the pull function.
+fatal: the remote end hung up unexpectedly
+fatal: the remote end hung up unexpectedly
+Everything up-to-date
+
+---
+exit_code: 0
+elapsed_ms: 1051100
+ended_at: 2026-10-10T07:33:39.155Z
+---

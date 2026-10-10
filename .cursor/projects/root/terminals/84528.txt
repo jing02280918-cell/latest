@@ -1,0 +1,7 @@
+---
+pid: 1606314
+cwd: "/root/vdriftbench"
+command: "curl -sS --connect-timeout 15 -o /dev/null -w 'github.com %{http_code} %{time_total}s\\n' https://github.com 2>&1; curl -sS --connect-timeout 15 -o /dev/null -w 'ssh.github.com:443 %{http_code} %{time_total}s\\n' https://ssh.github.com 2>&1; curl -sS --connect-timeout 15 -o /dev/null -w 'api.github.com %{http_code} %{time_total}s\\n' https://api.github.com 2>&1"
+started_at: 2026-10-10T07:32:51.604Z
+running_for_ms: 456825   
+---

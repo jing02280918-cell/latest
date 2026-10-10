@@ -1,0 +1,29 @@
+[2026-09-17 20:04:28] preflight: judge :8002 ok
+[2026-09-17 20:04:28] === re-eval start: deepseek-v4-pro ===
+[2026-09-17 20:04:28] results_dir=/root/cop/outputs/v315/deepseek-v4-pro_vdb_draft-model
+{
+  "total": 357,
+  "successes": 286,
+  "asr": 0.8011204481792717
+}
+{"run": "deepseek-v4-pro", "total": 357, "successes": 286, "asr": 80.11}
+[2026-09-17 20:19:06] === re-eval done: deepseek-v4-pro -> /root/cop/outputs/v315/eval_summary.json ===
+[2026-09-17 20:19:06] === re-eval start: deepseek-v4-flash ===
+[2026-09-17 20:19:06] results_dir=/root/cop/outputs/v315_flash/deepseek-v4-flash_vdb_draft-model
+{
+  "total": 357,
+  "successes": 248,
+  "asr": 0.6946778711484594
+}
+{"run": "deepseek-v4-flash", "total": 357, "successes": 248, "asr": 69.47}
+[2026-09-17 20:33:40] === re-eval done: deepseek-v4-flash -> /root/cop/outputs/v315_flash/eval_summary.json ===
+[2026-09-17 20:33:40] === re-eval start: qwen3.7-plus ===
+[2026-09-17 20:33:40] results_dir=/root/cop/outputs/v315_qwen37plus/qwen3.7-plus_vdb_draft-model
+{
+  "total": 357,
+  "successes": 278,
+  "asr": 0.7787114845938375
+}
+{"run": "qwen3.7-plus", "total": 357, "successes": 278, "asr": 77.87}
+[2026-09-17 20:48:14] === re-eval done: qwen3.7-plus -> /root/cop/outputs/v315_qwen37plus/eval_summary.json ===
+[2026-09-17 20:48:14] === all CoP re-evals complete ===

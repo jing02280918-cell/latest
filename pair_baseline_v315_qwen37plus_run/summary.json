@@ -1,0 +1,19 @@
+{
+  "n": 357,
+  "n_ok": 350,
+  "success_pct": 93.71428571428571,
+  "partial_pct": 0.0,
+  "fail_pct": 6.285714285714286,
+  "success_n": 328,
+  "partial_n": 0,
+  "fail_n": 22,
+  "avg_queries": 2.5685714285714285,
+  "avg_best_rs": 4.551428571428572,
+  "elapsed_s": 47290.87908101082,
+  "generated_at": "2026-09-13T04:01:27",
+  "judge_outcome_mode": "行为二元",
+  "judge_n_samples": 1,
+  "judge_per_dimension": false,
+  "target_model": "qwen3.7-plus",
+  "target_max_tokens": null
+}
